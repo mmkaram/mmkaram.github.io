@@ -25,6 +25,23 @@ body {
     }
 }
 
+/* @media (max-width: 1000px) {
+    .content {
+        margin: 0; 
+        width: 100%; 
+    }
+    body {
+        font-size: 27px;
+    }
+    img {
+        width: 100%;
+    }
+    .container {
+        display: flex;
+        margin: 5px;
+    }
+} */
+
 .project {
     background-color: #fff;
     margin-bottom: 15px;
@@ -41,6 +58,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    object-fit: contain;
 }
 .info {
     width: 50%;
