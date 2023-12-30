@@ -18,11 +18,14 @@ body {
     width: 70%; /* Adjust this as needed */
 }
 
+.about-me {
+    margin: 10px;
+}
 /* This will apply when the aspect ratio is more vertical */
 @media (orientation: portrait) {
     .content {
-        margin: 0; /* Remove the margin */
-        width: 100%; /* Take up the full width */
+        margin: 0; 
+        width: 100%; 
     }
 }
 
