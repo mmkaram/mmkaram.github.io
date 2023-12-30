@@ -12,39 +12,24 @@ body {
     text-align: center;
 }
 
-.content {
+.main-content {
     border: 15px; /* Your existing border */
     margin: 0 auto; /* Center the content */
-    width: 60%; /* Adjust this as needed */
+    width: 60%; /* Adjust this as needed */ 
 }
+
+/*  */
 
 .about-me {
     margin: 10px;
 }
 /* This will apply when the aspect ratio is more vertical */
 @media (orientation: portrait) {
-    .content {
+    .main-content {
         margin: 0; 
         width: 100%; 
     }
 }
-
-/* @media (max-width: 1000px) {
-    .content {
-        margin: 0; 
-        width: 100%; 
-    }
-    body {
-        font-size: 27px;
-    }
-    img {
-        width: 100%;
-    }
-    .container {
-        display: flex;
-        margin: 5px;
-    }
-} */
 
 .project {
     background-color: #fff;
@@ -54,18 +39,19 @@ body {
 }
 
 .container {
+    margin: 0 auto; /* Center the content */
     display: flex;
-    margin: 15px;
 }
 .image {
-    width: 50%;
+    width: auto;
     display: flex;
     justify-content: center;
     align-items: center;
     object-fit: contain;
+    margin: 15px;
 }
 .info {
-    width: 50%;
+    width: 70%;
 }
 a {
     color: rgb(52, 152, 222);
