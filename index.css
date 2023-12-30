@@ -15,7 +15,7 @@ body {
 .content {
     border: 15px; /* Your existing border */
     margin: 0 auto; /* Center the content */
-    width: 70%; /* Adjust this as needed */
+    width: 60%; /* Adjust this as needed */
 }
 
 .about-me {
