@@ -32,7 +32,20 @@
             statisticians. They can&#39;t tell you how your game has changed over time with the accuracy that a computer
             can.</p>
         <p>In addition, I was kinda fed up of all the other sports having stats like RBI (baseball), passing yards
-            (american football), and PPG (basketball). We're in the Olympics now, we better act like it.</p>
+            (american football), and PPG (basketball). We&#39;re in the Olympics now, we better act like it.</p>
+        <h2 id="how-it-works">How it works</h2>
+        <p>There is one point of data collection: the video. A video can either be streamed live into the program, or it
+            can be uploaded from the device&#39;s storage. </p>
+        <p>Once there is a feed, the real work can begin. Three key data points are collected every frame.</p>
+        <ol>
+            <li>The position of the ball</li>
+            <li>The positions of both players</li>
+            <li>The bounds of the court</li>
+        </ol>
+        <h2 id="1-ball-tracking">1. Ball Tracking</h2>
+        <p>Using basic computer vision techniques (KNN background detection, dilation, and more) with OpenCV, we can get
+            the position of the ball ~90% of the time.</p>
+        <p><img src="/assets/images/ball_tracking.png" alt="Ball Tracking"></p>
         <!--  -->
     </div>
 </body>

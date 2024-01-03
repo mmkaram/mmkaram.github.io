@@ -11,3 +11,18 @@ I made it because I wanted to improve my own game, and I thought that this would
 As I progressed in the project, I realized that it could be used to help other players improve *their* game. Coaching is expensive, and this should be way cheaper to run. In addition, coaches aren't statisticians. They can't tell you how your game has changed over time with the accuracy that a computer can.
 
 In addition, I was kinda fed up of all the other sports having stats like RBI (baseball), passing yards (american football), and PPG (basketball). We're in the Olympics now, we better act like it.
+
+## How it works
+
+There is one point of data collection: the video. A video can either be streamed live into the program, or it can be uploaded from the device's storage. 
+
+Once there is a feed, the real work can begin. Three key data points are collected every frame.
+1. The position of the ball
+2. The positions of both players
+3. The bounds of the court
+
+## 1. Ball Tracking
+
+Using basic computer vision techniques (KNN background detection, dilation, and more) with OpenCV, we can get the position of the ball ~90% of the time.
+
+![Ball Tracking](/assets/images/ball_tracking.png)
