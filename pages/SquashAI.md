@@ -25,7 +25,7 @@ Once there is a feed, the real work can begin. Three key data points are collect
 
 ## 1. Ball Tracking
 
-Using basic computer vision techniques (KNN background detection, dilation, and more) with OpenCV, we can get the position of the ball ~90% of the time.
+We can leverage basic computer vision techniques (KNN background detection, dilation, and more) with OpenCV to get the position of the ball ~90% of the time.
 
 ![Ball Tracking](/assets/images/ball_tracking.png)
 
