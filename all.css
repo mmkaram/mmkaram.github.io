@@ -29,8 +29,26 @@ body {
 /* This will apply when the aspect ratio is more vertical */
 @media (orientation: portrait) {
     .main-content {
-        margin: 0;
+        margin: 10px;
         width: 100%;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    html {
+        scrollbar-width: none;
+        /* For Firefox */
+        -ms-overflow-style: none;
+        /* For Internet Explorer and Edge */
     }
 }
 
