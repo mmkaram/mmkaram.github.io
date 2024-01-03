@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Proxima+Nova');
+
 body {
     /* font-family: Arial, sans-serif; */
     font-family: 'League Spartan';
@@ -8,6 +9,7 @@ body {
     padding: 0;
     background-color: #f0f0f0;
 }
+
 .header {
     background-color: #333;
     color: #fff;
@@ -16,16 +18,19 @@ body {
 }
 
 .main-content {
-    border: 15px; /* Your existing border */
-    margin: 0 auto; /* Center the content */
-    width: 60%; /* Adjust this as needed */ 
+    border: 15px;
+    /* Your existing border */
+    margin: 0 auto;
+    /* Center the content */
+    width: 60%;
+    /* Adjust this as needed */
 }
 
 /* This will apply when the aspect ratio is more vertical */
 @media (orientation: portrait) {
     .main-content {
-        margin: 0; 
-        width: 100%; 
+        margin: 0;
+        width: 100%;
     }
 }
 
