@@ -6,7 +6,7 @@
     <link href='https://fonts.googleapis.com/css?family=League Spartan' rel='stylesheet'>
     <link rel="stylesheet" href="all.css">
     <link rel="icon" href="icon.ico">
-    <title>mmkaram</title>
+    <title>SquashAI</title>
 </head>
 
 <body>
@@ -20,8 +20,7 @@
         </div>
         <!--  -->
         <p>This is a rudimentary explanation of the of the Squash AI program, if you want more details, contact me via
-            <a href="https://www.linkedin.com/in/mahdy-karam">LinkedIn</a>.
-        </p>
+            <a href="https://www.linkedin.com/in/mahdy-karam">LinkedIn</a>.</p>
         <h2 id="introduction">Introduction</h2>
         <p>What is SquashAI? Why did I make it? And why is it important?</p>
         <p>SquashAI is a mobile application intended to help squash players improve their game. It does this by
@@ -46,7 +45,11 @@
             <li>The bounds of the court</li>
         </ol>
         <h2 id="1-ball-tracking">1. Ball Tracking</h2>
-        <p>We can leverage basic computer vision techniques (KNN background detection, dilation, and more) with OpenCV to get the position of the ball ~90% of the time.</p>
+        <p>We can leverage basic computer vision techniques (KNN background detection, dilation, and more) with OpenCV
+            to get the position of the ball ~90% of the time.</p>
+        <p>This is based off a attempt by <a href="https://www.dmorris.co.uk/squash/ball_detect.html">Duncan
+                Morris</a>[^1], but I&#39;ve made some changes to make it more robust.</p>
+        <p>Which when rendered looks like this:</p>
         <p><img src="/assets/images/ball_tracking.png" alt="Ball Tracking"></p>
         <h2 id="2-player-tracking">2. Player Tracking</h2>
         <p>Using the Apache 2.0 licensed <a href="https://github.com/geaxgx/openvino_movenet_multipose">MoveNet</a>,
@@ -56,15 +59,12 @@
                 The first two channels of the last dimension represents the yx coordinates (normalized to image frame,
                 i.e. range in [0.0, 1.0]) of the 17 keypoints (in the order of: [nose, left eye, right eye, left ear,
                 right ear, left shoulder, right shoulder, left elbow, right elbow, left wrist, right wrist, left hip,
-                right hip, left knee, right knee, left ankle, right ankle]).&quot; [^1]</p>
+                right hip, left knee, right knee, left ankle, right ankle]).&quot; [^2]</p>
         </blockquote>
-
-        <p>Which when rendered looks like this:</p>
-            <img src="/assets/images/player_tracking.png" alt="Player Tracking">
-
-
-
-        <p>[^1]: From <a
+        <p>Rendered:</p>
+        <p><img src="/assets/images/player_tracking.png" alt="Player Tracking"></p>
+        <p>[^1]: From Duncan Morris&#39; <a href="https://www.dmorris.co.uk/squash/ball_detect.html">blog post</a></p>
+        <p>[^2]: From <a
                 href="https://storage.googleapis.com/movenet/MoveNet.SinglePose%20Model%20Card.pdf">Google&#39;s
                 Writeup</a></p>
 

@@ -27,6 +27,10 @@ Once there is a feed, the real work can begin. Three key data points are collect
 
 We can leverage basic computer vision techniques (KNN background detection, dilation, and more) with OpenCV to get the position of the ball ~90% of the time.
 
+This is based off a attempt by [Duncan Morris](https://www.dmorris.co.uk/squash/ball_detect.html)[^1], but I've made some changes to make it more robust.
+
+Which when rendered looks like this:
+
 ![Ball Tracking](/assets/images/ball_tracking.png)
 
 ## 2. Player Tracking
@@ -34,10 +38,12 @@ We can leverage basic computer vision techniques (KNN background detection, dila
 Using the Apache 2.0 licensed [MoveNet](https://github.com/geaxgx/openvino_movenet_multipose), developed by Google, we can get the following data:
 
 > "A float32 tensor of shape [1, 1, 17, 3].
-> The first two channels of the last dimension represents the yx coordinates (normalized to image frame, i.e. range in [0.0, 1.0]) of the 17 keypoints (in the order of: [nose, left eye, right eye, left ear, right ear, left shoulder, right shoulder, left elbow, right elbow, left wrist, right wrist, left hip, right hip, left knee, right knee, left ankle, right ankle])." [^1]
+> The first two channels of the last dimension represents the yx coordinates (normalized to image frame, i.e. range in [0.0, 1.0]) of the 17 keypoints (in the order of: [nose, left eye, right eye, left ear, right ear, left shoulder, right shoulder, left elbow, right elbow, left wrist, right wrist, left hip, right hip, left knee, right knee, left ankle, right ankle])." [^2]
 
-Which when rendered looks like this:
+Rendered:
+
 ![Player Tracking](/assets/images/player_tracking.png)
 
+[^1]: From Duncan Morris' [blog post](https://www.dmorris.co.uk/squash/ball_detect.html)
 
-[^1]: From [Google's Writeup](https://storage.googleapis.com/movenet/MoveNet.SinglePose%20Model%20Card.pdf)
+[^2]: From [Google's Writeup](https://storage.googleapis.com/movenet/MoveNet.SinglePose%20Model%20Card.pdf)
