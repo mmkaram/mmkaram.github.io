@@ -27,7 +27,7 @@ Once there is a feed, the real work can begin. Three key data points are collect
 
 We can leverage basic computer vision techniques (KNN background detection, dilation, and more) with OpenCV to get the position of the ball ~90% of the time.
 
-This is based off a attempt by [Duncan Morris](https://www.dmorris.co.uk/squash/ball_detect.html)[^1], but I've made some changes to make it more robust.
+This is based off an attempt by [Duncan Morris](https://www.dmorris.co.uk/squash/ball_detect.html)[^1], but I've made some changes to make it more robust.
 
 Which when rendered looks like this:
 
