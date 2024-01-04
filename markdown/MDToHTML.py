@@ -53,6 +53,9 @@ def convert():
             link_pattern = r'\[([^\]]+)\]\(([^\)]+)\)'
             line = re.sub(link_pattern, r'<a href="\2">\1</a>', line)
 
+            footnote_text_pattern = r'\[\^(\d+)\]: (.*)'
+            line = re.sub(footnote_text_pattern, r'<p><sup id="note\1">\1. <a href="#ref\1">↩</a></sup> \2</p>', line)
+            
             footnote_ref_pattern = r'\[\^(\d+)\]'
             line = re.sub(footnote_ref_pattern, r'<sup id="ref\1"><a href="#note\1">\1</a></sup>', line)
 
