@@ -8,11 +8,7 @@ SquashAI is a mobile application intended to help squash players improve their g
 
 I made it because I wanted to improve my own game, and I thought I might as well put my programming skills to use. I also wanted to learn more about machine learning and computer vision, and this was a great way to do that.
 
-As I progressed in the project, I realized that it could be used to help other players improve *their* game, especially people who don't have the economic background to be able to afford standard coaching fees. This should be way cheaper to run and democratize coaching for the masses. In addition, coaches aren't statisticians. They can't tell you how your game has changed over time with the accuracy that a computer can.
-
-In addition, I was kinda fed up of all the other sports having stats like RBI (baseball), passing yards (american football), and PPG (basketball).
-
-**We're in the Olympics now, we better act like it.**
+As I progressed in the project, I realized that it could be used to help other players improve *their* game, especially people who don't have the economic background to be able to afford standard coaching fees. This should be way cheaper to run and democratize coaching for the masses. In addition, coaches aren't statisticians. They can't tell you how your game has changed over time with the accuracy that a computer can. I was got kinda fed up of all the other sports having stats like RBI (baseball), passing yards (american football), and PPG (basketball). We're in the Olympics now, we better act like it.
 
 ## How it works
 
