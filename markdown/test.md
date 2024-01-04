@@ -27,11 +27,11 @@ This is based off an attempt by [Duncan Morris](https://www.dmorris.co.uk)[^1], 
 
 The pipeline looks like this: Video -> Preprocessing -> Background Subtraction -> Dilation -> Filtering -> Contour Detection -> Ball Position
 
-#### Preprocessing:
+##### Preprocessing:
 - resize the frame to ```970 x 540``` pixels 
 - that's really it, we want to keep all the information we can
 
-#### Background Subtraction:
+##### Background Subtraction:
 - Using OpenCV's ```createBackgroundSubtractorKNN()``` function, we can get a mask of the background
 - It needs a frame count to use as history to compare the change in each pixel so it acn tell what has changed (higher isn't always better)
 - The most changed pixels are detected as the foreground
@@ -39,16 +39,16 @@ The pipeline looks like this: Video -> Preprocessing -> Background Subtraction -
     - We know the top possible speed of the ball, so we can limit the size of the frame it actually does the KNN-Background Subtraction on
     - Using [connected-components](https://en.wikipedia.org/wiki/Connected-component_labeling)
 
-#### Dilation:
+##### Dilation:
 > *After a conversation with [Dr. Joe Webber](https://www.linkedin.com/in/drjoeweber/), I now know the way I'm doing it isn't the best, so I'll update this when I implement his feedback*
 
 - The [KNN-Background Subtraction](https://docs.opencv.org/3.4/db/d88/classcv_1_1BackgroundSubtractorKNN.html) leaves a lot of noise, so we can use dilation to get rid of it
 
-#### Filtering:
+##### Filtering:
 
 > *working on it, see that Dr. Webber comment above*
 
-#### Contour Detection:
+##### Contour Detection:
 
 this part of the doc is a WIP
 
@@ -60,12 +60,16 @@ Finally, when rendered it looks like this (bottom left: KNN, top right: dialatio
 
 Using the Apache 2.0 licensed [MoveNet](https://github.com/geaxgx/openvino_movenet_multipose), developed by Google, we can get the following data:
 
-> "A float32 tensor of shape [1, 1, 17, 3]. The first two channels of the last dimension represents the yx coordinates (normalized to image frame, i.e. range in [0.0, 1.0]) of the 17 keypoints (in the order of: [nose, left eye, right eye, left ear, right ear, left shoulder, right shoulder, left elbow, right elbow, left wrist, right wrist, left hip, right hip, left knee, right knee, left ankle, right ankle])." [^2]
+> "A float32 tensor of shape [1, 1, 17, 3].
+> The first two channels of the last dimension represents the yx coordinates (normalized to image frame, i.e. range in [0.0, 1.0]) of the 17 keypoints (in the order of: [nose, left eye, right eye, left ear, right ear, left shoulder, right shoulder, left elbow, right elbow, left wrist, right wrist, left hip, right hip, left knee, right knee, left ankle, right ankle])." [^2]
 
 Rendered:
 
 ![Player Tracking](/assets/images/player_tracking.png)
 
-[^1]: From Duncan Morris's [blog post](https://www.dmorris.co.uk/squash/ball_detect.html)
+
+
+
+[^1]: From Duncan Morris' [blog post](https://www.dmorris.co.uk/squash/ball_detect.html)
 
 [^2]: From [Google's Writeup](https://storage.googleapis.com/movenet/MoveNet.SinglePose%20Model%20Card.pdf)

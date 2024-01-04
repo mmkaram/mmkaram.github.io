@@ -62,3 +62,8 @@ code {
     font-size: 19px; /* same size as surrounding text */
     padding: 2px 4px; /* some padding so the text isn't right up against the edge of the box */
 }
+
+blockquote {
+    background-color: #e0e0e0; /* Slightly darker shade of the background color */
+    border-radius: 5px; /* Adjust as needed */
+}

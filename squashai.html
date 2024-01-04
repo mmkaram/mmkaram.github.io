@@ -48,7 +48,7 @@
         <h2 id="1-ball-tracking">1. Ball Tracking</h2>
         <p>We can leverage basic computer vision techniques (KNN background detection, dilation, and more) with OpenCV
             to get the position of the ball ~90% of the time.</p>
-        <p>This is based off an attempt by <a href="https://www.dmorris.co.uk/squash/ball_detect.html">Duncan
+        <p>This is based off an attempt by <a href="https://www.dmorris.co.uk">Duncan
                 Morris</a>[^1], but I&#39;ve made some changes to make it more robust.</p>
         <p>The pipeline looks like this: Video -&gt; Preprocessing -&gt; Background Subtraction -&gt; Dilation -&gt;
             Filtering -&gt; Contour Detection -&gt; Ball Position</p>
