@@ -55,3 +55,10 @@ body {
 a {
     color: rgb(52, 152, 222);
 }
+
+code {
+    background-color: #fff8f8; /* light grey background */
+    border-radius: 5px; /* rounded corners */
+    font-size: 19px; /* same size as surrounding text */
+    padding: 2px 4px; /* some padding so the text isn't right up against the edge of the box */
+}
