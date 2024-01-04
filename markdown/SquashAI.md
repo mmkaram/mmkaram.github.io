@@ -4,11 +4,11 @@ This is a rudimentary explanation of the of the Squash AI program, if you want m
 
 What is SquashAI? Why did I make it? And why is it important?
 
-SquashAI is a mobile application intended to help squash players improve their game. It does this by providing a way to track the player's performance and provide feedback on how to improve. It also provides a way to track the player's progress over time.
+SquashAI is a mobile application intended to help squash players improve their game. It does this by providing a way to track the player's performance and provide feedback on how to improve. It also stores that information to track progress over time.
 
-I made it because I wanted to improve my own game, and I thought that this would be a good way to do it. I also wanted to learn more about machine learning, and this seemed like a good way to do that as well.
+I made it because I wanted to improve my own game, and I thought I might as well put my programming skills to use. I also wanted to learn more about machine learning and computer vision, and this was a great way to do that.
 
-As I progressed in the project, I realized that it could be used to help other players improve *their* game. Coaching is expensive, and this should be way cheaper to run. In addition, coaches aren't statisticians. They can't tell you how your game has changed over time with the accuracy that a computer can.
+As I progressed in the project, I realized that it could be used to help other players improve *their* game, especially people who don't have the economic background to be able to afford standard coaching fees. This should be way cheaper to run and democratize coaching for the masses. In addition, coaches aren't statisticians. They can't tell you how your game has changed over time with the accuracy that a computer can.
 
 In addition, I was kinda fed up of all the other sports having stats like RBI (baseball), passing yards (american football), and PPG (basketball).
 
@@ -54,9 +54,9 @@ The pipeline looks like this: Video -> Preprocessing -> Background Subtraction -
 
 ##### Contour Detection:
 
-doc is a WIP
+this part of the doc is a WIP
 
-Finally, when rendered it looks like this:
+Finally, when rendered it looks like this (bottom left: KNN, top right: dialation, top left: contour detection overlayed on original frame):
 
 ![Ball Tracking](/assets/images/ball_tracking.png)
 
@@ -70,6 +70,9 @@ Using the Apache 2.0 licensed [MoveNet](https://github.com/geaxgx/openvino_moven
 Rendered:
 
 ![Player Tracking](/assets/images/player_tracking.png)
+
+
+
 
 [^1]: From Duncan Morris' [blog post](https://www.dmorris.co.uk/squash/ball_detect.html)
 

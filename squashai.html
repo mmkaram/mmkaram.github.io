@@ -24,14 +24,16 @@
         <h2 id="introduction">Introduction</h2>
         <p>What is SquashAI? Why did I make it? And why is it important?</p>
         <p>SquashAI is a mobile application intended to help squash players improve their game. It does this by
-            providing a way to track the player&#39;s performance and provide feedback on how to improve. It also
-            provides a way to track the player&#39;s progress over time.</p>
-        <p>I made it because I wanted to improve my own game, and I thought that this would be a good way to do it. I
-            also wanted to learn more about machine learning, and this seemed like a good way to do that as well.</p>
+            providing a way to track the player&#39;s performance and provide feedback on how to improve. It also stores
+            that information to track progress over time.</p>
+        <p>I made it because I wanted to improve my own game, and I thought I might as well put my programming skills to
+            use. I also wanted to learn more about machine learning and computer vision, and this was a great way to do
+            that.</p>
         <p>As I progressed in the project, I realized that it could be used to help other players improve <em>their</em>
-            game. Coaching is expensive, and this should be way cheaper to run. In addition, coaches aren&#39;t
-            statisticians. They can&#39;t tell you how your game has changed over time with the accuracy that a computer
-            can.</p>
+            game, especially people who don&#39;t have the economic background to be able to afford standard coaching
+            fees. This should be way cheaper to run and democratize coaching for the masses. In addition, coaches
+            aren&#39;t statisticians. They can&#39;t tell you how your game has changed over time with the accuracy that
+            a computer can.</p>
         <p>In addition, I was kinda fed up of all the other sports having stats like RBI (baseball), passing yards
             (american football), and PPG (basketball).</p>
         <p><strong>We&#39;re in the Olympics now, we better act like it.</strong></p>
@@ -49,8 +51,44 @@
             to get the position of the ball ~90% of the time.</p>
         <p>This is based off an attempt by <a href="https://www.dmorris.co.uk/squash/ball_detect.html">Duncan
                 Morris</a>[^1], but I&#39;ve made some changes to make it more robust.</p>
-        <p>Which when rendered looks like this:</p>
-        <p><img src="assets/images/ball_tracking.png" alt="Ball Tracking"></p>
+        <p>The pipeline looks like this: Video -&gt; Preprocessing -&gt; Background Subtraction -&gt; Dilation -&gt;
+            Filtering -&gt; Contour Detection -&gt; Ball Position</p>
+        <h5 id="preprocessing-">Preprocessing:</h5>
+        <ul>
+            <li>resize the frame to <code>970 x 540</code> pixels </li>
+            <li>that&#39;s really it, we want to keep all the information we can</li>
+        </ul>
+        <h5 id="background-subtraction-">Background Subtraction:</h5>
+        <ul>
+            <li>Using OpenCV&#39;s <code>createBackgroundSubtractorKNN()</code> function, we can get a mask of the
+                background</li>
+            <li>It needs a frame count to use as history to compare the change in each pixel so it acn tell what has
+                changed (higher isn&#39;t always better)</li>
+            <li>The most changed pixels are detected as the foreground</li>
+            <li>Once enough data has been collected, we can actually optimize this algorithm by doing two things<ul>
+                    <li>We know the top possible speed of the ball, so we can limit the size of the frame it actually
+                        does the KNN-Background Subtraction on</li>
+                    <li>Using <a
+                            href="https://en.wikipedia.org/wiki/Connected-component_labeling">connected-components</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <h5 id="dilation-">Dilation:</h5>
+        <p><em>After a conversation with <a href="https://www.linkedin.com/in/drjoeweber/">Dr. Joe Webber</a>, I now
+                know the way I&#39;m doing it isn&#39;t the best, so I&#39;ll update this when I implement his
+                feedback</em></p>
+        <ul>
+            <li>The <a href="https://docs.opencv.org/3.4/db/d88/classcv_1_1BackgroundSubtractorKNN.html">KNN-Background
+                    Subtraction</a> leaves a lot of noise, so we can use dilation to get rid of it</li>
+        </ul>
+        <h5 id="filtering-">Filtering:</h5>
+        <p><em>working on it, see that Dr. Webber comment above</em></p>
+        <h5 id="contour-detection-">Contour Detection:</h5>
+        <p>this part of the doc is a WIP</p>
+        <p>Finally, when rendered it looks like this (bottom left: KNN, top right: dialation, top left: contour
+            detection overlayed on original frame):</p>
+        <p><img src="/assets/images/ball_tracking.png" alt="Ball Tracking"></p>
         <h2 id="2-player-tracking">2. Player Tracking</h2>
         <p>Using the Apache 2.0 licensed <a href="https://github.com/geaxgx/openvino_movenet_multipose">MoveNet</a>,
             developed by Google, we can get the following data:</p>
@@ -62,7 +100,7 @@
                 right hip, left knee, right knee, left ankle, right ankle]).&quot; [^2]</p>
         </blockquote>
         <p>Rendered:</p>
-        <p><img src="assets/images/player_tracking.png" alt="Player Tracking"></p>
+        <p><img src="/assets/images/player_tracking.png" alt="Player Tracking"></p>
         <p>[^1]: From Duncan Morris&#39; <a href="https://www.dmorris.co.uk/squash/ball_detect.html">blog post</a></p>
         <p>[^2]: From <a
                 href="https://storage.googleapis.com/movenet/MoveNet.SinglePose%20Model%20Card.pdf">Google&#39;s
