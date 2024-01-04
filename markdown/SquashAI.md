@@ -29,7 +29,34 @@ We can leverage basic computer vision techniques (KNN background detection, dila
 
 This is based off an attempt by [Duncan Morris](https://www.dmorris.co.uk/squash/ball_detect.html)[^1], but I've made some changes to make it more robust.
 
-Which when rendered looks like this:
+The pipeline looks like this: Video -> Preprocessing -> Background Subtraction -> Dilation -> Filtering -> Contour Detection -> Ball Position
+
+##### Preprocessing:
+- resize the frame to ```970 x 540``` pixels 
+- that's really it, we want to keep all the information we can
+
+##### Background Subtraction:
+- Using OpenCV's ```createBackgroundSubtractorKNN()``` function, we can get a mask of the background
+- It needs a frame count to use as history to compare the change in each pixel so it acn tell what has changed (higher isn't always better)
+- The most changed pixels are detected as the foreground
+- Once enough data has been collected, we can actually optimize this algorithm by doing two things
+    - We know the top possible speed of the ball, so we can limit the size of the frame it actually does the KNN-Background Subtraction on
+    - Using [connected-components](https://en.wikipedia.org/wiki/Connected-component_labeling)
+
+##### Dilation:
+*After a conversation with [Dr. Joe Webber](https://www.linkedin.com/in/drjoeweber/), I now know the way I'm doing it isn't the best, so I'll update this when I implement his feedback*
+
+- The [KNN-Background Subtraction](https://docs.opencv.org/3.4/db/d88/classcv_1_1BackgroundSubtractorKNN.html) leaves a lot of noise, so we can use dilation to get rid of it
+
+##### Filtering:
+
+*working on it, see that Dr. Webber comment above*
+
+##### Contour Detection:
+
+doc is a WIP
+
+Finally, when rendered it looks like this:
 
 ![Ball Tracking](/assets/images/ball_tracking.png)
 
