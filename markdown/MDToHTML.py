@@ -33,11 +33,11 @@ def convert():
         f.write("<p><a href=\"index.html\">home</a></p>")
         f.write("<div>")
         f.write("<h1> Squash AI</h1>")
-        f.write("</div>")
+        f.write("</div><p>")
 
         for line in lines:
 
-            line = line.replace("\n", "</p><p>")
+            line = line.replace("\n", "<br>")
             line = line.replace("\r", "")
 
             bold_pattern = r'\*\*([^\*]+)\*\*'
@@ -84,5 +84,5 @@ def convert():
                 line = '<h6>' + line[7:] + '</h6>'
             
             f.write(line + "\n")
-        f.write("</body>\n</html>")
+        f.write("</p></body>\n</html>")
 convert()
