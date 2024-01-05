@@ -33,21 +33,21 @@ This is based off an attempt by <a href="https://www.dmorris.co.uk">Duncan Morri
 The pipeline looks like this: Video -> Preprocessing -> Background Subtraction -> Dilation -> Filtering -> Contour Detection -> Ball Position</p><p>
 </p><p>
 <h4>Preprocessing:</p><p></h4>
-- resize the frame to <code>970 x 540<code> pixels </p><p>
-- that's really it, we want to keep all the information we can</p><p>
+<li>resize the frame to ```970 x 540``` pixels </p><p></li>
+<li>that's really it, we want to keep all the information we can</p><p></li>
 </p><p>
 <h4>Background Subtraction:</p><p></h4>
-- Using OpenCV's </code>createBackgroundSubtractorKNN()</code> function, we can get a mask of the background</p><p>
-- It needs a frame count to use as history to compare the change in each pixel so it acn tell what has changed (higher isn't always better)</p><p>
-- The most changed pixels are detected as the foreground</p><p>
-- Once enough data has been collected, we can actually optimize this algorithm by doing two things</p><p>
+<li>Using OpenCV's ```createBackgroundSubtractorKNN()``` function, we can get a mask of the background</p><p></li>
+<li>It needs a frame count to use as history to compare the change in each pixel so it acn tell what has changed (higher isn't always better)</p><p></li>
+<li>The most changed pixels are detected as the foreground</p><p></li>
+<li>Once enough data has been collected, we can actually optimize this algorithm by doing two things</p><p></li>
     - We know the top possible speed of the ball, so we can limit the size of the frame it actually does the KNN-Background Subtraction on</p><p>
     - Using <a href="https://en.wikipedia.org/wiki/Connected-component_labeling">connected-components</a></p><p>
 </p><p>
 <h4>Dilation:</p><p></h4>
 <blockquote><i>After a conversation with <a href="https://www.linkedin.com/in/drjoeweber/">Dr. Joe Webber</a>, I now know the way I'm doing it isn't the best, so I'll update this when I implement his feedback</i></p><p></blockquote>
 </p><p>
-- The <a href="https://docs.opencv.org/3.4/db/d88/classcv_1_1BackgroundSubtractorKNN.html">KNN-Background Subtraction</a> leaves a lot of noise, so we can use dilation to get rid of it</p><p>
+<li>The <a href="https://docs.opencv.org/3.4/db/d88/classcv_1_1BackgroundSubtractorKNN.html">KNN-Background Subtraction</a> leaves a lot of noise, so we can use dilation to get rid of it</p><p></li>
 </p><p>
 <h4>Filtering:</p><p></h4>
 </p><p>

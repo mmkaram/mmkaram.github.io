@@ -59,19 +59,15 @@ def convert():
             footnote_ref_pattern = r'\[\^(\d+)\]'
             line = re.sub(footnote_ref_pattern, r'<sup id="ref\1"><a href="#note\1">\1</a></sup>', line)
 
-            footnote_text_pattern = r'\[\^(\d+)\]: (.*)'
-            line = re.sub(footnote_text_pattern, r'<p id="note\1">\1. <a href="#ref\1">↩</a> \2</p>', line)
 
             if line.startswith('> '):
                 line = '<blockquote>' + line[2:] + '</blockquote>'
-
-            if "```" in line:
-                if not code_flag:
-                    line = line.replace("```", "<code>")
-                    code_flag = True
-                else:
-                    line = line.replace("```", "</code>")
-                    code_flag = False
+            
+            list_pattern = r'^- (.*)$'
+            line = re.sub(list_pattern, r'<li>\1</li>', line)
+            
+            nested_list_pattern = r'^(\t|- {4})(.*)$'
+            line = re.sub(nested_list_pattern, r'<ul><li>\2</li></ul>', line)
             
             if line.startswith('# '):
                 line = '<h1>' + line[2:] + '</h1>'
