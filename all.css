@@ -3,7 +3,7 @@
 body {
     /* font-family: Arial, sans-serif; */
     font-family: 'League Spartan';
-    font-size: 19px;
+    font-size: 21px;
     /* line-height: 1.4; */
     margin: 0;
     padding: 0;
@@ -59,7 +59,7 @@ a {
 code {
     background-color: #fff8f8; /* light grey background */
     border-radius: 5px; /* rounded corners */
-    font-size: 19px; /* same size as surrounding text */
+    font-size: 21px; /* same size as surrounding text */
     padding: 2px 4px; /* some padding so the text isn't right up against the edge of the box */
 }
 

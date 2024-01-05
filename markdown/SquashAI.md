@@ -25,24 +25,18 @@ We can leverage basic computer vision techniques (KNN background detection, dila
 - that's really it, we want to keep all the information we can
 
 #### Background Subtraction:
-- Using OpenCV's ```createBackgroundSubtractorKNN()``` function, we can get a mask of the background
-- It needs a frame count to use as history to compare the change in each pixel so it acn tell what has changed (higher isn't always better)
-- The most changed pixels are detected as the foreground
-- Once enough data has been collected, we can actually optimize this algorithm.
-
-##### Optimizing the Background Subtraction:
-- We know the top possible speed of the ball, so we can limit the area it does the KNN calculations on[^2].
-- We can use [connected-components](https://en.wikipedia.org/wiki/Connected-component_labeling)
+- Using OpenCV's ```createBackgroundSubtractorKNN()``` function, we can get a mask of the background. It needs a frame count to use as history to compare the change in each pixel so it acn tell what has changed. A higher history isn't always better, because camera shake can change more pixels than intended, so ideally it's actually dynamic. There's another way we can optimize this too. We know the top possible speed of the ball, so we can limit the area it does the KNN calculations on[^2].
 
 #### Dilation:
 > *After a conversation with [Dr. Joe Webber](https://www.linkedin.com/in/drjoeweber/), I now know the way I'm doing it isn't the best, so I'll update this when I implement his feedback*
-- The [KNN-Background Subtraction](https://docs.opencv.org/3.4/db/d88/classcv_1_1BackgroundSubtractorKNN.html) leaves a lot of noise, so we can use dilation to get rid of it
+The [KNN-Background Subtraction](https://docs.opencv.org/3.4/db/d88/classcv_1_1BackgroundSubtractorKNN.html) leaves a lot of noise, so we can use dilation to get rid of it
 
 #### Filtering:
 > *working on it, see that Dr. Webber comment above*
 
 #### Contour Detection:
-> *this part of the doc is a WIP*
+Currently, I'm using shilouette detection to identify what part of our dialated foreground is the ball. We can actually use [connected-components](https://en.wikipedia.org/wiki/Connected-component_labeling) instead. This requires less math, and is more accurate.
+
 Finally, when rendered it looks like this (bottom left: KNN, top right: dialation, top left: contour detection overlayed on original frame):
 
 ![Ball Tracking](/assets/images/ball_tracking.png)

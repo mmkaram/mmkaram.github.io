@@ -30,24 +30,18 @@ We can leverage basic computer vision techniques (KNN background detection, dila
 <li>that's really it, we want to keep all the information we can<br></li>
 <br>
 <h4>Background Subtraction:<br></h4>
-<li>Using OpenCV's <code>createBackgroundSubtractorKNN()</code> function, we can get a mask of the background<br></li>
-<li>It needs a frame count to use as history to compare the change in each pixel so it acn tell what has changed (higher isn't always better)<br></li>
-<li>The most changed pixels are detected as the foreground<br></li>
-<li>Once enough data has been collected, we can actually optimize this algorithm.<br></li>
-<br>
-<h5>Optimizing the Background Subtraction:<br></h5>
-<li>We know the top possible speed of the ball, so we can limit the area it does the KNN calculations on<sup id="ref2"><a href="#note2">2</a></sup>.<br></li>
-<li>We can use <a href="https://en.wikipedia.org/wiki/Connected-component_labeling">connected-components</a><br></li>
+<li>Using OpenCV's <code>createBackgroundSubtractorKNN()</code> function, we can get a mask of the background. It needs a frame count to use as history to compare the change in each pixel so it acn tell what has changed. A higher history isn't always better, because camera shake can change more pixels than intended, so ideally it's actually dynamic. There's another way we can optimize this too. We know the top possible speed of the ball, so we can limit the area it does the KNN calculations on<sup id="ref2"><a href="#note2">2</a></sup>.<br></li>
 <br>
 <h4>Dilation:<br></h4>
 <blockquote><i>After a conversation with <a href="https://www.linkedin.com/in/drjoeweber/">Dr. Joe Webber</a>, I now know the way I'm doing it isn't the best, so I'll update this when I implement his feedback</i><br></blockquote>
-<li>The <a href="https://docs.opencv.org/3.4/db/d88/classcv_1_1BackgroundSubtractorKNN.html">KNN-Background Subtraction</a> leaves a lot of noise, so we can use dilation to get rid of it<br></li>
+The <a href="https://docs.opencv.org/3.4/db/d88/classcv_1_1BackgroundSubtractorKNN.html">KNN-Background Subtraction</a> leaves a lot of noise, so we can use dilation to get rid of it<br>
 <br>
 <h4>Filtering:<br></h4>
 <blockquote><i>working on it, see that Dr. Webber comment above</i><br></blockquote>
 <br>
 <h4>Contour Detection:<br></h4>
-<blockquote><i>this part of the doc is a WIP</i><br></blockquote>
+Currently, I'm using shilouette detection to identify what part of our dialated foreground is the ball. We can actually use <a href="https://en.wikipedia.org/wiki/Connected-component_labeling">connected-components</a> instead. This requires less math, and is more accurate.<br>
+<br>
 Finally, when rendered it looks like this (bottom left: KNN, top right: dialation, top left: contour detection overlayed on original frame):<br>
 <br>
 <img src="/assets/images/ball_tracking.png" alt="Ball Tracking"><br>
