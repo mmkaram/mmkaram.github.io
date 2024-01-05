@@ -14,7 +14,7 @@ As I progressed in the project, I realized that it could be used to help other p
 
 There is one point of data collection: the video. Recorded from a single smartphone, a video can either be streamed live into the program, or it can be uploaded from the device's storage. 
 
-Once there is a feed, the real work can begin. Three key data points are collected every frame.
+Once there is a feed, the real work can begin. Three key data points are collected every frame:
 1. The position of the ball
 2. The positions of both players
 3. The bounds of the court
@@ -23,7 +23,7 @@ Once there is a feed, the real work can begin. Three key data points are collect
 
 We can leverage basic computer vision techniques (KNN background detection, dilation, and more) with OpenCV to get the position of the ball ~90% of the time.
 
-This is based off an attempt by [Duncan Morris](https://www.dmorris.co.uk)[^1], but I've made some changes to make it more robust.
+This is based off an attempt by [Duncan Morris](https://www.dmorris.co.uk), but I've made some changes to make it more robust[^1].
 
 The pipeline looks like this: Video -> Preprocessing -> Background Subtraction -> Dilation -> Filtering -> Contour Detection -> Ball Position
 
@@ -36,8 +36,8 @@ The pipeline looks like this: Video -> Preprocessing -> Background Subtraction -
 - It needs a frame count to use as history to compare the change in each pixel so it acn tell what has changed (higher isn't always better)
 - The most changed pixels are detected as the foreground
 - Once enough data has been collected, we can actually optimize this algorithm by doing two things
-    - We know the top possible speed of the ball, so we can limit the size of the frame it actually does the KNN-Background Subtraction on
-    - Using [connected-components](https://en.wikipedia.org/wiki/Connected-component_labeling)
+1. We know the top possible speed of the ball, so we can limit the size of the frame it actually does the KNN-Background Subtraction on
+2. Using [connected-components](https://en.wikipedia.org/wiki/Connected-component_labeling)
 
 #### Dilation:
 > *After a conversation with [Dr. Joe Webber](https://www.linkedin.com/in/drjoeweber/), I now know the way I'm doing it isn't the best, so I'll update this when I implement his feedback*

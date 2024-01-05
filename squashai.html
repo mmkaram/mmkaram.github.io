@@ -19,7 +19,7 @@ As I progressed in the project, I realized that it could be used to help other p
 </p><p>
 There is one point of data collection: the video. Recorded from a single smartphone, a video can either be streamed live into the program, or it can be uploaded from the device's storage. </p><p>
 </p><p>
-Once there is a feed, the real work can begin. Three key data points are collected every frame.</p><p>
+Once there is a feed, the real work can begin. Three key data points are collected every frame:</p><p>
 1. The position of the ball</p><p>
 2. The positions of both players</p><p>
 3. The bounds of the court</p><p>
@@ -28,21 +28,21 @@ Once there is a feed, the real work can begin. Three key data points are collect
 </p><p>
 We can leverage basic computer vision techniques (KNN background detection, dilation, and more) with OpenCV to get the position of the ball ~90% of the time.</p><p>
 </p><p>
-This is based off an attempt by <a href="https://www.dmorris.co.uk">Duncan Morris</a><sup id="ref1"><a href="#note1">1</a></sup>, but I've made some changes to make it more robust.</p><p>
+This is based off an attempt by <a href="https://www.dmorris.co.uk">Duncan Morris</a>, but I've made some changes to make it more robust<sup id="ref1"><a href="#note1">1</a></sup>.</p><p>
 </p><p>
 The pipeline looks like this: Video -> Preprocessing -> Background Subtraction -> Dilation -> Filtering -> Contour Detection -> Ball Position</p><p>
 </p><p>
 <h4>Preprocessing:</p><p></h4>
-<li>resize the frame to ```970 x 540``` pixels </p><p></li>
+<li>resize the frame to <code>970 x 540</code> pixels </p><p></li>
 <li>that's really it, we want to keep all the information we can</p><p></li>
 </p><p>
 <h4>Background Subtraction:</p><p></h4>
-<li>Using OpenCV's ```createBackgroundSubtractorKNN()``` function, we can get a mask of the background</p><p></li>
+<li>Using OpenCV's <code>createBackgroundSubtractorKNN()</code> function, we can get a mask of the background</p><p></li>
 <li>It needs a frame count to use as history to compare the change in each pixel so it acn tell what has changed (higher isn't always better)</p><p></li>
 <li>The most changed pixels are detected as the foreground</p><p></li>
 <li>Once enough data has been collected, we can actually optimize this algorithm by doing two things</p><p></li>
-    - We know the top possible speed of the ball, so we can limit the size of the frame it actually does the KNN-Background Subtraction on</p><p>
-    - Using <a href="https://en.wikipedia.org/wiki/Connected-component_labeling">connected-components</a></p><p>
+1. We know the top possible speed of the ball, so we can limit the size of the frame it actually does the KNN-Background Subtraction on</p><p>
+2. Using <a href="https://en.wikipedia.org/wiki/Connected-component_labeling">connected-components</a></p><p>
 </p><p>
 <h4>Dilation:</p><p></h4>
 <blockquote><i>After a conversation with <a href="https://www.linkedin.com/in/drjoeweber/">Dr. Joe Webber</a>, I now know the way I'm doing it isn't the best, so I'll update this when I implement his feedback</i></p><p></blockquote>

@@ -35,7 +35,6 @@ def convert():
         f.write("<h1> Squash AI</h1>")
         f.write("</div>")
 
-        code_flag = False
         for line in lines:
 
             line = line.replace("\n", "</p><p>")
@@ -63,11 +62,13 @@ def convert():
             if line.startswith('> '):
                 line = '<blockquote>' + line[2:] + '</blockquote>'
             
-            list_pattern = r'^- (.*)$'
+            list_pattern = r'^[\t ]*- (.*)$'
             line = re.sub(list_pattern, r'<li>\1</li>', line)
-            
-            nested_list_pattern = r'^(\t|- {4})(.*)$'
-            line = re.sub(nested_list_pattern, r'<ul><li>\2</li></ul>', line)
+
+            inline_code_pattern = r'`+([^`]+)`+'
+            line = re.sub(inline_code_pattern, r'<code>\1</code>', line)
+
+
             
             if line.startswith('# '):
                 line = '<h1>' + line[2:] + '</h1>'
