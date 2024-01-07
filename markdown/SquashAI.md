@@ -1,3 +1,4 @@
+# SquashAI
 This is a rudimentary explanation of the of the Squash AI program, if you want more details, contact me via [LinkedIn](https://www.linkedin.com/in/mahdy-karam).
 ## Introduction
 What is SquashAI? Why did I make it? And why is it important?
@@ -14,7 +15,8 @@ Once there is a feed, the real work can begin. Three key data points are collect
 - The positions of both players
 - The bounds of the court
 ## 1. Ball Tracking
-We can leverage basic computer vision techniques (KNN background detection, dilation, and more) with OpenCV to get the position of the ball ~90% of the time. This is based off an attempt by [Duncan Morris](https://www.dmorris.co.uk), but I've made some changes to make it more robust[^1]. Effectively, the pipeline looks like this: Video -> Preprocessing -> Background Subtraction -> Dilation -> Filtering -> Contour Detection -> Ball Position
+We can leverage basic computer vision techniques (KNN background detection, dilation, and more) with OpenCV to get the position of the ball ~90% of the time. This is based off an attempt by [Duncan Morris](https://www.dmorris.co.uk), but I've made some changes to make it more robust[^1]. Effectively, the pipeline looks like this:
+Video -> Preprocessing -> Background Subtraction -> Dilation -> Filtering -> Contour Detection -> Ball Position
 #### Preprocessing:
 - resize the frame to ```970 x 540``` pixels 
 - that's really it, we want to keep all the information we can

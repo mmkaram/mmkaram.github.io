@@ -3,7 +3,8 @@
 <link href='https://fonts.googleapis.com/css?family=League Spartan' rel='stylesheet'><link rel="stylesheet" href="all.css">
 </head>
 <body>
-<div class="header"><h1></h1></div><div class="main-content"><p><a href="index.html">home</a></p><div><h1> Squash AI</h1></div><p>This is a rudimentary explanation of the of the Squash AI program, if you want more details, contact me via <a href="https://www.linkedin.com/in/mahdy-karam">LinkedIn</a>.<br>
+<div class="header"><h1></h1></div><div class="main-content"><p><a href="index.html">home</a></p><div></div><p><h1>SquashAI<br></h1>
+This is a rudimentary explanation of the of the Squash AI program, if you want more details, contact me via <a href="https://www.linkedin.com/in/mahdy-karam">LinkedIn</a>.<br>
 <h2>Introduction<br></h2>
 What is SquashAI? Why did I make it? And why is it important?<br>
 <br>
@@ -19,7 +20,8 @@ Once there is a feed, the real work can begin. Three key data points are collect
 <li>The positions of both players<br></li>
 <li>The bounds of the court<br></li>
 <h2>1. Ball Tracking<br></h2>
-We can leverage basic computer vision techniques (KNN background detection, dilation, and more) with OpenCV to get the position of the ball ~90% of the time. This is based off an attempt by <a href="https://www.dmorris.co.uk">Duncan Morris</a>, but I've made some changes to make it more robust<sup id="ref1"><a href="#note1">1</a></sup>. Effectively, the pipeline looks like this: Video -> Preprocessing -> Background Subtraction -> Dilation -> Filtering -> Contour Detection -> Ball Position<br>
+We can leverage basic computer vision techniques (KNN background detection, dilation, and more) with OpenCV to get the position of the ball ~90% of the time. This is based off an attempt by <a href="https://www.dmorris.co.uk">Duncan Morris</a>, but I've made some changes to make it more robust<sup id="ref1"><a href="#note1">1</a></sup>. Effectively, the pipeline looks like this:<br>
+Video -> Preprocessing -> Background Subtraction -> Dilation -> Filtering -> Contour Detection -> Ball Position<br>
 <h4>Preprocessing:<br></h4>
 <li>resize the frame to <code>970 x 540</code> pixels <br></li>
 <li>that's really it, we want to keep all the information we can<br></li>

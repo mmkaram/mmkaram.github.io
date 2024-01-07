@@ -32,7 +32,6 @@ def convert():
         f.write("<div class=\"main-content\">")
         f.write("<p><a href=\"index.html\">home</a></p>")
         f.write("<div>")
-        f.write("<h1> Squash AI</h1>")
         f.write("</div><p>")
 
         for line in lines:
