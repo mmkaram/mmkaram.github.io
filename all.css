@@ -56,6 +56,22 @@ a {
     color: rgb(52, 152, 222);
 }
 
+img {
+    border: 15px;
+    /* Your existing border */
+    margin: 0 auto;
+    /* Center the content */
+    width: 60%;
+    /* Adjust this as needed */
+    max-width: 100%;
+    /* Add this line to limit the image width */
+   
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+}
+
 code {
     background-color: #fff8f8; /* light grey background */
     border-radius: 5px; /* rounded corners */

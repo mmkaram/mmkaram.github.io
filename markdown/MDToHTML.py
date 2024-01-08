@@ -24,6 +24,7 @@ def convert():
         f.write("<head>\n")
         f.write("<link href='https://fonts.googleapis.com/css?family=League Spartan' rel='stylesheet'>")
         f.write("<link rel=\"stylesheet\" href=\"all.css\">\n")
+        f.write("<link rel=\"icon\" href=\"icon.ico\">")
         f.write("</head>\n")
         f.write("<body>\n")
         f.write("<div class=\"header\">")
