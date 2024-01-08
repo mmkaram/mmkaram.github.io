@@ -14,7 +14,7 @@ With a bike.
 My current bike won't work for this, so I'm thinking of getting [this](https://www.cannondale.com/en-us/bikes/road/endurance/synapse/synapse-3) one. I don't want a d2i groupset because this is a 2k km trip, and most d2i charges last like 700 km. If you have a better bike suggestion, please do tell.
 I also plan on not taking my phone. So I'm bringing a GPS tracker and definitely a camera. I want to be able to disconnect from the world for a bit.
 
-Food: I'm thinking of bringing a small stove and some camping food, but I'll probably just buy some food along the way. There's a ton of small villages along the way, so I'm not too worried about that.
+Food: I'm thinking of bringing a small stove and some camping food, but I'll probably just buy some food as I go along. There's a ton of small villages along the way, so I'm not too worried about that.
 
 Sleeping:
 I'm bringing a tent as I may not get to a town in time every day. 
