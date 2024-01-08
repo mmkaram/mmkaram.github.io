@@ -28,5 +28,5 @@ I speak Italian, so I'm not *too* worried about speaking to the locals.
 > *More details to come.*
 
 ### Where
-Italy. Here's the [route](https://fatmap.com/routeid/3582865/italy:-north-to-south):
+Italy. 1,745 km (1,089 miles) of distance and 9,993 meters (32785.43 feet) in elevation. This may kill me. Here's the [route](https://fatmap.com/routeid/3582865/italy:-north-to-south):
 ![Route](/assets/images/ItalyRoute.png)
