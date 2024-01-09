@@ -1,5 +1,5 @@
+'''Converts markdown to HTML'''
 # Mahdy Karam 2024-01
-# Converts markdown to HTML
 # With the [^1] footnote syntax
 
 import sys
@@ -19,9 +19,15 @@ def convert():
         f.write("<!DOCTYPE html>")
         f.write("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">")
 
-        
+        # Extract filename from the path
+        filename = os.path.basename(sys.argv[1])
+
+        # Remove .md extension
+        title = os.path.splitext(filename)[0]
+
         f.write("<html>\n")
         f.write("<head>\n")
+        f.write(f"<title>{title}</title>\n")
         f.write("<link href='https://fonts.googleapis.com/css?family=League Spartan' rel='stylesheet'>")
         f.write("<link rel=\"stylesheet\" href=\"all.css\">\n")
         f.write("<link rel=\"icon\" href=\"icon.ico\">")
