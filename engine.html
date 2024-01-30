@@ -4,9 +4,17 @@
 <link href='https://fonts.googleapis.com/css?family=League Spartan' rel='stylesheet'><link rel="stylesheet" href="all.css">
 <link rel="icon" href="icon.ico"></head>
 <body>
-<div class="header"><h1></h1></div><div class="main-content"><p><a href="index.html">home</a></p><div></div><p><h1>0K-Engine<br></h1>
-This is me trying to write a chess engine in C++. I'm using <a href="https://github.com/Disservin/chess-library/tree/master">this</a> chess library for the chess logic. I wanted to write my own but that would take too long AND isn't the point of what I'm trying to do.<br>
+<div class="header"><h1></h1></div><div class="main-content"><p><a href="index.html">home</a></p><div></div><p><h1>The 0K-Engine<br></h1>
+My attempt at a <a href="https://github.com/mmkaram/0K-Engine">chess engine in C++</a>. Using the <a href="https://www.shredderchess.com/chess-info/features/uci-universal-chess-interface.html">Universal Chess Interface</a> (UCI) protocol and <a href="https://github.com/Disservin/chess-library/tree/master">this</a> chess library by <a href="https://github.com/Disservin">Disservin</a>. I called it the "0K"-engine as 0K is part of my username in video games, but I think it's funny that you can read it as "an engine that is OK".<br>
 <br>
-I'll add more to this later
+<h2>First attempts<br></h2>
+When I first tried writing this I thought I'd try to write chess logic myself. Not only did I try to use classes for each pieces, which made move-generation painfully slow, but I wrote it in a way that made it way more complicated than it needed to be. Then when I found "chess-library" by Disservin and saw that the .h file was about 4k lines long, I remebered that the point of this project was to make a chess engine, not the logic, so I just the library instead.<br>
+For what concerns the actual engine, my first attempt at an evaluation function would loop through all the squares and add up all the piece values (plus or minus some value for where the pieces was (center is better for knights for example)). After an email conversation with the "chess-library" creator themselves, I found a better way to do it. You can see the diff in the github repo for this project under <a href="https://github.com/mmkaram/0K-Engine/blob/master/src/engine.cpp#L23">src/engine.cpp@eval</a>. <br>
+<br>
+<h2>Estimated Rating<br></h2>
+Probably like, 700. Maybe worse<br>
+<br>
+<h2>What I learned<br></h2>
+I have another ongoing project, <a href="https://mmkaram.github.io/squashai.html">SquashAI</a>, where I was going to use a deep learning algorithm to teach the program what a good shot/play was. Chess programming introduced me to evaluation functions. I think I have some ideas on how to implement those into the squash coaching program.<br>
 </p></body>
 </html>
