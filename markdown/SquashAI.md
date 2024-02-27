@@ -38,6 +38,9 @@ Rendered:
 
 ![Player Tracking](/assets/images/player_tracking.png)
 
+## 3. Court analysis
+Using openCV's powerful toolset, we can use functions like ```getPerspectiveTransform()``` to unwarp the court as we know the out and service lines are all straight (hopefully, if they aren't you're playing on a wack court).
+
 [^1]: From Duncan Morris's [blog post](https://www.dmorris.co.uk/squash/ball_detect.html)
 [^2]: The top speed of the ball ~267 kph (166 mph) according to [Guinness World Records](https://www.guinnessworldrecords.com/world-records/63439-fastest-speed-of-a-squash-ball)
 [^3]: From [Google's Writeup](https://storage.googleapis.com/movenet/MoveNet.SinglePose%20Model%20Card.pdf)
