@@ -4,7 +4,7 @@
 
 
 .project {
-    background-color: #fff;
+    background-color: #414040;
     margin-bottom: 4px;
     padding: 8px;
     border-radius: 7px;
@@ -13,7 +13,7 @@
 }
 
 .project:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(95, 92, 92, 0.1);
 }
 
 .container {
