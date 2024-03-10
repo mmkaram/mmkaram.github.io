@@ -9,7 +9,6 @@
     padding: 8px;
     border-radius: 7px;
     transition: background-color 0.5s ease;
-    /* smooth transition */
 }
 
 .project:hover {
@@ -17,7 +16,6 @@
 }
 
 .read-more {
-
     border: 1px solid #ccc; /* Adjust the color as needed */
     border-radius: 5px; /* Adds rounded corners */
     padding: 5px 10px; /* Adjust padding as needed */
