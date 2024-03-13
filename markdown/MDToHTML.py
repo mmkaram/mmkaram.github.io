@@ -31,6 +31,10 @@ def convert():
         f.write("<link href='https://fonts.googleapis.com/css?family=League Spartan' rel='stylesheet'>")
         f.write("<link rel=\"stylesheet\" href=\"all.css\">\n")
         f.write("<link rel=\"icon\" href=\"icon.ico\">")
+        
+        # script tag for copyright footer
+        f.write("<script> document.addEventListener('DOMContentLoaded', function() {var currentYear = new Date().getFullYear(); var footerYear = document.getElementById('footer-year');footerYear.textContent = currentYear;});</script>")
+
         f.write("</head>\n")
         f.write("<body>\n")
         # f.write("<div class=\"header\">")
@@ -90,5 +94,6 @@ def convert():
                 line = '<h6>' + line[7:] + '</h6>'
             
             f.write(line + "\n")
+        f.write("<footer>&copy; <span id=\"footer-year\"></span> Mahdy M. Karam</footer>")
         f.write("</p></body>\n</html>")
 convert()

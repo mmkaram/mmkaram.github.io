@@ -8,6 +8,13 @@
     <link rel="stylesheet" href="index.css">
     <link rel="icon" href="icon.ico">
     <title>mmkaram</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var currentYear = new Date().getFullYear();
+          var footerYear = document.getElementById('footer-year');
+          footerYear.textContent = currentYear;
+        });
+      </script>
 </head>
 
 <body>
@@ -63,10 +70,9 @@
                 </div>
             </a>
         </div>
-    <div class="footer">
-        Copyright Mahdy M. Karam 2024
+    <footer>
+        &copy; <span id="footer-year"></span> Mahdy M. Karam
+    </footer>
     </div>
-    </div>
-    <div class="footer"></div>
 </body>
 </html>
