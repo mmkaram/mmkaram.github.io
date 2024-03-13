@@ -4,22 +4,22 @@ body {
     /* font-family: Arial, sans-serif; */
     font-family: 'League Spartan';
     font-size: 23px;
+    color: rgb(248, 248, 242);
     /* line-height: 1.4; */
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+    background-color: rgb(32, 33, 36);
 }
 
 .header {
-    background-color: #333;
-    color: #fff;
+    background-color: rgb(32, 33, 36);;
     padding: 10px;
     text-align: center;
 }
 
 .main-content {
     border: 15px;
-    /* Your existing border */
+    /* existing border */
     margin: 0 auto;
     /* Center the content */
     width: 60%;
@@ -58,7 +58,7 @@ a {
 
 img {
     border: 15px;
-    /* Your existing border */
+    /* existing border */
     margin: 0 auto;
     /* Center the content */
     width: 60%;
@@ -73,13 +73,15 @@ img {
 }
 
 code {
-    background-color: #fff8f8; /* light grey background */
-    border-radius: 5px; /* rounded corners */
-    font-size: 21px; /* same size as surrounding text */
-    padding: 2px 4px; /* some padding so the text isn't right up against the edge of the box */
+    background-color: rgb(59, 60, 63); /* light grey background */
+    color: rgb(248, 248, 242);
+    border-radius: 5px; 
+    font-size: 21px; 
+    padding: 2px 4px; 
 }
 
 blockquote {
-    background-color: #e0e0e0; /* Slightly darker shade of the background color */
-    border-radius: 5px; /* Adjust as needed */
+    background-color: rgb(59, 60, 63);
+    color: rgb(248, 248, 242);
+    border-radius: 6px; 
 }
