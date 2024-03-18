@@ -69,7 +69,6 @@ def convert():
             footnote_ref_pattern = r'\[\^(\d+)\]'
             line = re.sub(footnote_ref_pattern, r'<sup id="ref\1"><a href="#note\1">\1</a></sup>', line)
 
-
             if line.startswith('> '):
                 line = '<blockquote>' + line[2:] + '</blockquote>'
 
@@ -78,8 +77,6 @@ def convert():
 
             inline_code_pattern = r'`+([^`]+)`+'
             line = re.sub(inline_code_pattern, r'<code>\1</code>', line)
-
-
 
             if line.startswith('# '):
                 line = '<h1>' + line[2:] + '</h1>'
