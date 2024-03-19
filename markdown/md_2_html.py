@@ -94,4 +94,5 @@ def convert():
             f.write(line + "\n")
         f.write("<footer>&copy; <span id=\"footer-year\"></span> Mahdy M. Karam</footer>")
         f.write("</p></body>\n</html>")
+
 convert()
