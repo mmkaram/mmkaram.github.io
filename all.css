@@ -2,13 +2,13 @@
 
 @font-face {
     font-family: 'TaMere'; 
-    src: url('assets\0xProtoNerdFontMono-Regular.ttf');
+    src: url('assets/ProtoNerdFontMono-Regular.ttf');
 }
 
 body {
     /* font-family: Arial, sans-serif; */
     /* font-family: 'League Spartan'; */
-    font-family: monospace;
+    font-family: 'TaMere';
     font-size: 18px;
     color: rgb(248, 248, 242);
     /* line-height: 1.4; */
