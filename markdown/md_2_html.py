@@ -33,7 +33,15 @@ def convert():
         f.write("<link rel=\"icon\" href=\"icon.ico\">")
 
         # script tag for copyright footer
-        f.write("<script> document.addEventListener('DOMContentLoaded', function() {var currentYear = new Date().getFullYear(); var footerYear = document.getElementById('footer-year');footerYear.textContent = currentYear;});</script>")
+        date_str = '''
+        <script>
+        document.addEventListener('DOMContentLoaded', function()
+        {var currentYear = new Date().getFullYear();
+        var footerYear = document.getElementById('footer-year');
+        footerYear.textContent = currentYear;});
+        </script>        
+        '''
+        f.write(date_str)
 
         f.write("</head>\n")
         f.write("<body>\n")
