@@ -1,4 +1,6 @@
 # Cycling Italy: North to South
+*December 21st, 2024 (edited) / Mahdy Karam*
+
 ## Intro: 
 I've always wanted to go to Italy. I think this started when I first started watching the Ferrari F1 team when I was kid. Seeing the red cars zip around made me wonder how and where they were designed and manufactured. I've also always been pretty good at cyclying, I think my convenient weight combined with my need for speed as a kid just led me to bikes. I couldn't race cars, so this was the next best thing.
 Unfortuantely, this isn't anything like racing. I'm not going to be fast. I'm not going to be in a group. I'm not going to be on a track. I'm going to be alone, on a bike, in Italy. No phone, no GPS (I really wanted one but I can't guarantee that I'll always be able to charge it, plus, Sea of Thieves made me an expert in reading maps), and no idea what I'm doing.

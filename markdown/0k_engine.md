@@ -1,4 +1,6 @@
 # The 0K-Engine
+*January 13th, 2024 (edited) / Mahdy Karam*
+
 My attempt at a [chess engine in C++](https://github.com/mmkaram/0K-Engine). Using the [Universal Chess Interface](https://www.shredderchess.com/chess-info/features/uci-universal-chess-interface.html) (UCI) protocol and [this](https://github.com/Disservin/chess-library/tree/master) chess library by [Disservin](https://github.com/Disservin). I called it the "0K"-engine as 0K is part of my username in video games, but I think it's funny that you can read it as "an engine that is OK".
 
 ## First attempts
