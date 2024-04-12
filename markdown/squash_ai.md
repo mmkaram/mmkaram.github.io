@@ -1,5 +1,5 @@
 # SquashAI
-This is a rudimentary explanation of the of the Squash AI program, if you want more details, contact me via [LinkedIn](https://www.linkedin.com/in/mahdy-karam).
+*This is a rudimentary explanation of the of the Squash AI program, if you want more details, contact me via [LinkedIn](https://www.linkedin.com/in/mahdy-karam).*
 ## Introduction
 What is SquashAI? Why did I make it? And why is it important?
 
