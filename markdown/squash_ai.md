@@ -38,7 +38,7 @@ Using the Apache 2.0 licensed [MoveNet](https://github.com/geaxgx/openvino_moven
 > "A float32 tensor of shape [1, 1, 17, 3]. The first two channels of the last dimension represents the yx coordinates (normalized to image frame, i.e. range in [0.0, 1.0]) of the 17 keypoints (in the order of: [nose, left eye, right eye, left ear, right ear, left shoulder, right shoulder, left elbow, right elbow, left wrist, right wrist, left hip, right hip, left knee, right knee, left ankle, right ankle])." [^3]
 Rendered:
 
-![Player Tracking](/assets/images/player_tracking.png)
+![Player Tracking](assets/images/player_tracking.png)
 
 ## 3. Court analysis
 Using openCV's powerful toolset, we can use functions like ```getPerspectiveTransform()``` to unwarp the court as we know the out and service lines are all straight (hopefully, if they aren't you're playing on a wack court).
