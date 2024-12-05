@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>0k-engine | mmkaram</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="The 0K-Engine
+January 13th, 2024 (edited) / Mahdy Karam
+My attempt at a chess engine in C&#43;&#43;. Using the Universal Chess Interface (UCI) protocol and this chess library by Disservin. I called it the &ldquo;0K&rdquo;-engine as 0K is part of my username in video games, but I think it&rsquo;s funny that you can read it as &ldquo;an engine that is OK&rdquo;.
+First attempts
+When I first tried writing this I thought I&rsquo;d try to write chess logic myself. Not only did I try to use classes for each pieces, which made move-generation painfully slow, but I wrote it in a way that made it way more complicated than it needed to be. Then when I found &ldquo;chess-library&rdquo; by Disservin and saw that the .h file was about 4k lines long, I remebered that the point of this project was to make a chess engine, not the logic, so I just the library instead.
+For what concerns the actual engine, my first attempt at an evaluation function would loop through all the squares and add up all the piece values (plus or minus some value for where the pieces was (center is better for knights for example)). After an email conversation with the &ldquo;chess-library&rdquo; creator themselves, I found a better way to do it. You can see the diff in the github repo for this project under src/engine.cpp@eval.">
+    <meta name="generator" content="Hugo 0.139.0">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/post1/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/post1/">
+  <meta property="og:site_name" content="mmkaram">
+  <meta property="og:title" content="0k-engine">
+  <meta property="og:description" content="The 0K-Engine January 13th, 2024 (edited) / Mahdy Karam
+My attempt at a chess engine in C&#43;&#43;. Using the Universal Chess Interface (UCI) protocol and this chess library by Disservin. I called it the “0K”-engine as 0K is part of my username in video games, but I think it’s funny that you can read it as “an engine that is OK”.
+First attempts When I first tried writing this I thought I’d try to write chess logic myself. Not only did I try to use classes for each pieces, which made move-generation painfully slow, but I wrote it in a way that made it way more complicated than it needed to be. Then when I found “chess-library” by Disservin and saw that the .h file was about 4k lines long, I remebered that the point of this project was to make a chess engine, not the logic, so I just the library instead. For what concerns the actual engine, my first attempt at an evaluation function would loop through all the squares and add up all the piece values (plus or minus some value for where the pieces was (center is better for knights for example)). After an email conversation with the “chess-library” creator themselves, I found a better way to do it. You can see the diff in the github repo for this project under src/engine.cpp@eval.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2024-12-04T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-12-04T00:00:00+00:00">
+
+  <meta itemprop="name" content="0k-engine">
+  <meta itemprop="description" content="The 0K-Engine January 13th, 2024 (edited) / Mahdy Karam
+My attempt at a chess engine in C&#43;&#43;. Using the Universal Chess Interface (UCI) protocol and this chess library by Disservin. I called it the “0K”-engine as 0K is part of my username in video games, but I think it’s funny that you can read it as “an engine that is OK”.
+First attempts When I first tried writing this I thought I’d try to write chess logic myself. Not only did I try to use classes for each pieces, which made move-generation painfully slow, but I wrote it in a way that made it way more complicated than it needed to be. Then when I found “chess-library” by Disservin and saw that the .h file was about 4k lines long, I remebered that the point of this project was to make a chess engine, not the logic, so I just the library instead. For what concerns the actual engine, my first attempt at an evaluation function would loop through all the squares and add up all the piece values (plus or minus some value for where the pieces was (center is better for knights for example)). After an email conversation with the “chess-library” creator themselves, I found a better way to do it. You can see the diff in the github repo for this project under src/engine.cpp@eval.">
+  <meta itemprop="datePublished" content="2024-12-04T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-12-04T00:00:00+00:00">
+  <meta itemprop="wordCount" content="285">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="0k-engine">
+  <meta name="twitter:description" content="The 0K-Engine January 13th, 2024 (edited) / Mahdy Karam
+My attempt at a chess engine in C&#43;&#43;. Using the Universal Chess Interface (UCI) protocol and this chess library by Disservin. I called it the “0K”-engine as 0K is part of my username in video games, but I think it’s funny that you can read it as “an engine that is OK”.
+First attempts When I first tried writing this I thought I’d try to write chess logic myself. Not only did I try to use classes for each pieces, which made move-generation painfully slow, but I wrote it in a way that made it way more complicated than it needed to be. Then when I found “chess-library” by Disservin and saw that the .h file was about 4k lines long, I remebered that the point of this project was to make a chess engine, not the logic, so I just the library instead. For what concerns the actual engine, my first attempt at an evaluation function would loop through all the squares and add up all the piece values (plus or minus some value for where the pieces was (center is better for knights for example)). After an email conversation with the “chess-library” creator themselves, I found a better way to do it. You can see the diff in the github repo for this project under src/engine.cpp@eval.">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        mmkaram
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <div class="flex-l mt2 mw8 center">
+    <article class="center cf pv5 ph3 ph4-ns mw7">
+      <header>
+        <h1 class="f1">
+          0k-engine
+        </h1>
+      </header>
+      <div class="nested-copy-line-height lh-copy f4 nested-links mid-gray">
+        <h1 id="the-0k-engine">The 0K-Engine</h1>
+<p><em>January 13th, 2024 (edited) / Mahdy Karam</em></p>
+<p>My attempt at a <a href="https://github.com/mmkaram/0K-Engine">chess engine in C++</a>. Using the <a href="https://www.shredderchess.com/chess-info/features/uci-universal-chess-interface.html">Universal Chess Interface</a> (UCI) protocol and <a href="https://github.com/Disservin/chess-library/tree/master">this</a> chess library by <a href="https://github.com/Disservin">Disservin</a>. I called it the &ldquo;0K&rdquo;-engine as 0K is part of my username in video games, but I think it&rsquo;s funny that you can read it as &ldquo;an engine that is OK&rdquo;.</p>
+<h2 id="first-attempts">First attempts</h2>
+<p>When I first tried writing this I thought I&rsquo;d try to write chess logic myself. Not only did I try to use classes for each pieces, which made move-generation painfully slow, but I wrote it in a way that made it way more complicated than it needed to be. Then when I found &ldquo;chess-library&rdquo; by Disservin and saw that the .h file was about 4k lines long, I remebered that the point of this project was to make a chess engine, not the logic, so I just the library instead.
+For what concerns the actual engine, my first attempt at an evaluation function would loop through all the squares and add up all the piece values (plus or minus some value for where the pieces was (center is better for knights for example)). After an email conversation with the &ldquo;chess-library&rdquo; creator themselves, I found a better way to do it. You can see the diff in the github repo for this project under <a href="https://github.com/mmkaram/0K-Engine/blob/master/src/engine.cpp#L23">src/engine.cpp@eval</a>.</p>
+<h2 id="estimated-rating">Estimated Rating</h2>
+<p>Probably like, 700. Maybe worse</p>
+<h2 id="what-i-learned">What I learned</h2>
+<p>I have another ongoing project, <a href="https://mmkaram.github.io/squashai.html">SquashAI</a>, where I was going to use a deep learning algorithm to teach the program what a good shot/play was. Chess programming introduced me to evaluation functions. I think I have some ideas on how to implement those into the squash coaching program.</p>
+
+      </div>
+    </article>
+  </div>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://localhost:1313/" >
+    &copy;  mmkaram 2024 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
