@@ -1,6 +1,6 @@
 baseURL = 'https://mmkaram.github.io/'
 languageCode = 'en-us'
-title = "mmkaram's website"
+title = "mmkaram"
 theme = 'typo'
 
 [params]
