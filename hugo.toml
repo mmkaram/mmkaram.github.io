@@ -19,8 +19,8 @@ My name is Mahdy Karam. I'm a student at the University of Waterloo. I like to w
 """
 
 # Collection to display on home
-homeCollectionTitle = 'Posts'
-homeCollection = 'posts'
+homeCollectionTitle = 'Projects'
+homeCollection = 'projects'
 
 # Lists parameters
 paginationSize = 100
@@ -40,17 +40,17 @@ name = "github"
 url = "https://github.com/mmkaram"
 
 # Main menu pages
-# [[params.menu]]
-# name = "home"
-# url = "/"
+[[params.menu]]
+name = "home"
+url = "/"
 
 [[params.menu]]
 name = "posts"
 url = "/posts"
 
-# [[params.menu]]
-# name = "about"
-# url = "/about"
+[[params.menu]]
+name = "projects"
+url = "/projects"
 
 # Syntax highligth on code blocks
 [markup]
