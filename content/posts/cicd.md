@@ -98,9 +98,11 @@ Ok, sweet, that's three requirements done if you consider this is entirely docke
 
 ## DNS, Reverse Proxy, and Publicly Facing Sites
 
-My VPS has a admin system that allows subdomains from it's higher level domain to be configured to point to your VPS's IP address. After setting that up, it's a matter of getting that https request to point to my NextJS server. There are many ways to use this, [traeffic](https://doc.traefik.io/traefik/) was recommended to me as well as being mentioned in the video I linked above. But for me, when I hear reverse proxy, I hear NGINX, so that's what I did.
+My VPS has a admin system that allows subdomains from it's higher level domain to be configured to point to your VPS's IP address. After setting that up, it's a matter of getting that https request to point to my NextJS server. There are many ways to use this, [traeffic](https://doc.traefik.io/traefik/) was recommended to me as well as being mentioned in the video I linked above. This was a chance for me to go off the beaten path and learn something newer and less archaic than nginx(which I've used for other projects before). With it's strange syntax and strange configuration file setup, you'd really think this program wasn't designed for the modern web. Plus, no one would willingly go out of their way to write nginx configurations that are deployable with docker when there are other options available, right?
 
-Keeping up with the theme of repoducibility, I found the official docker container for nginx, and set it with my current docker compose system. Given that I had used NGINX before, this was as easy as taking what used to be a split and messy confuguration that lives inside multiple subdirectoriese of `/etc/nginx/` and put it in one nginx.conf file that lived in the same directory as my `compose.yml` file. 
+### Writing nginx configurations that are deployable with docker
+
+I found the official docker container for nginx, and set it with my current docker compose system. Given that I had used NGINX before, this was as easy as taking what used to be a split and messy confuguration that lives inside multiple subdirectoriese of `/etc/nginx/` and put it in one nginx.conf file that lived in the same directory as my `compose.yml` file. 
 
 All this file did was point all https traffic coming from the websites domain to port 3000, which is the port where NextJS was hosting my web app. 
 
@@ -108,7 +110,7 @@ Just like that, we only had one more requirement to go.
 
 ## Security
 
-There are a couple of obvious things I could do to improve security right off the bat, low hanging fruits one may say:
+There are a couple of obvious things I did off the bat to improve security, low hanging fruits one may say:
 - Disable logging into ssh via password and requiring an ssh key
 - Not running NextJS in dev mode
 - Not running flask in dev mode
@@ -118,6 +120,8 @@ There are a couple of obvious things I could do to improve security right off th
 And just like that, we're done!
 
 ## Final notes
+
+I really enjoyed setting this up!
 
 These are some things that I am aware of/want to do in the future, so consider this a todo list for future me concerning this topic.
 - I would like to eventually redirect http traffic to https, instead of blocking it completely

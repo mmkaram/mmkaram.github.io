@@ -1,359 +1,52 @@
-<!DOCTYPE html>
-<html lang="en-us"
-  dir="ltr">
-
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-    <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-
-
-
-<link rel="icon" type="image/ico" href="http://localhost:1313//favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313//favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313//favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="192x192" href="http://localhost:1313//android-chrome-192x192.png">
-<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313//apple-touch-icon.png">
-
-<meta name="description" content=""/>
-
-<title>
-    
-    Setting up my own server with CI/CD and Docker | mmkaram
-    
-</title>
-
-<link rel="canonical" href="http://localhost:1313/posts/cicd/"/>
-
-<meta property="og:url" content="http://localhost:1313/posts/cicd/">
-  <meta property="og:site_name" content="mmkaram">
-  <meta property="og:title" content="Setting up my own server with CI/CD and Docker">
-  <meta property="og:description" content="How I went about setting up a VPS to run my web app">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-02-13T00:00:00+00:00">
-    <meta property="article:modified_time" content="2025-02-13T00:00:00+00:00">
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/assets/combined.min.186794b3399a702d3092949042cdc215dea303c17e71e7c0254768448de11db8.css" media="all">
-
-
-
-
-
-  </head>
-
-  
-
-  
-  
-  
-
-  <body class="auto">
-
-    <div class="content">
-      <header>
-        
-
-<div class="header">
-
-    
-
-    <h1 class="header-title">
-        <a href="http://localhost:1313/">mmkaram</a>
-    </h1>
-
-    <div class="flex">
-        
-
-        
-        
-      
-        <p class="small ">
-            <a href="/" >
-                /home
-            </a>
-        </p>
-        
-      
-        <p class="small ">
-            <a href="/posts" >
-                /posts
-            </a>
-        </p>
-        
-      
-        <p class="small ">
-            <a href="/projects" >
-                /projects
-            </a>
-        </p>
-        
-        
-    </div>
-
-    
-
-</div>
-
-      </header>
-
-      <main class="main">
-        
-
-
-
-
-
-<div class="breadcrumbs">
-    
-    <a href="/">mmkaram</a>
-    <span class="breadcrumbs-separator"> > </span>
-    
-    <a href="/posts/">Posts</a>
-    <span class="breadcrumbs-separator"> > </span>
-    
-    <a class="breadcrumbs-current" href="/posts/cicd/">Setting up my own server with CI/CD and Docker</a>
-</div>
-
-
-
-<div >
-
-  <div class="single-intro-container">
-
-    
-
-    <h1 class="single-title">Setting up my own server with CI/CD and Docker</h1>
-    
-    <p class="single-summary">How I went about setting up a VPS to run my web app</p>
-    
-
-    
-
-    <p class="single-readtime">
-      
-      
-      
-      <time datetime="2025-02-13T00:00:00&#43;00:00">February 13, 2025</time>
-      
-
-      
-    </p>
-
-  </div>
-
-  
-
-  
-
-  
-
-  
-
-  <div class="single-content">
-    <h1 class="heading" id="introduction">
-  Introduction
-  <a href="#introduction">#</a>
-</h1>
-<p>I&rsquo;m getting really close to deploying my B2C automous squash coaching app <a href="/projects/squashai">SquashAI</a>. For it to trully be busniess to consumer though, I needed a way for users to upload their videos so they can be queued for analysis. After watching enough of <a href="https://www.youtube.com/@t3dotgg">theo&rsquo;s</a> I was convinced to use NextJS with it&rsquo;s fancy app router and SSR, even though I had very little exprience with javascript, much less typescript and tsx. When it came to deploying, the natural choice wast ercel, which was actually one of the easiest &ldquo;technical&rdquo; things I&rsquo;ve ever set up in my life. It was as simple as linking my github account, picking the repository that contained my NextJS application, and uploading my <code>.env.local</code>.</p>
-<p>Vercel did it&rsquo;s magic. Being able to test my UI with Vercel&rsquo;s automatic deployments and nice UI made me a very happy camper. The problems started to show, though, once I had to start implementing the actual analysis part of the app (you know, the important part).</p>
-<p>Vercel only lets users upload <a href="https://github.com/payloadcms/payload/discussions/7569">4.5mb</a> in a single request. And given that video files can be quite large, this wouldn&rsquo;t fly. Problem was, most other providers had a limitation like this (my theory is because they&rsquo;re all AWS wrappers and that&rsquo;s the upload limit on AWS lambda). So, I had to look elsewhere for a solution. This brought me to some of the most fun I&rsquo;ve had in a while, the VPS!</p>
-<p>After watching <a href="https://www.youtube.com/watch?v=F-9KWQByeU0&amp;t=1110s">this video</a> by Dreams of Code, I was inspired to get spin up a VPS and see how far I could get trying to replicate these platofrms as a service services like Vercel, railway.com, and netlify.</p>
-<p>Inspired by the video, I decided to make my own requirements for this VPS system to be considered production ready.</p>
-<p>Mahdy&rsquo;s 5 Requirements for a Production Ready VPS:</p>
-<ul>
-<li>Is publicly available on the internet</li>
-<li>Automatically deploys new versions of my application when they&rsquo;re pushed to prod</li>
-<li>Be reproduicble (this was inspired by my year long usage of <a href="/posts/nixos">NixOS</a>)</li>
-<li>High availability, even when new versions are being deployed.</li>
-<li>Be as secure as I could reasonably make it</li>
-</ul>
-<p>With my needs laid out, it was time to start building.</p>
-<h2 class="heading" id="automatic-deployment-and-testing-cicd">
-  Automatic Deployment and Testing (CI/CD)
-  <a href="#automatic-deployment-and-testing-cicd">#</a>
-</h2>
-<h3 class="heading" id="setup">
-  Setup
-  <a href="#setup">#</a>
-</h3>
-<p>Before I can begin explaining how I deployed this app to my many users on the internet, I should probably explain how my project is set up.</p>
-<p>All of the code for this bad boy to run is contained in two repos:
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width"><link rel=icon type=image/ico href=https://mmkaram.github.io//favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://mmkaram.github.io//favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://mmkaram.github.io//favicon-32x32.png><link rel=icon type=image/png sizes=192x192 href=https://mmkaram.github.io//android-chrome-192x192.png><link rel=apple-touch-icon sizes=180x180 href=https://mmkaram.github.io//apple-touch-icon.png><meta name=description content><title>Setting up my own server with CI/CD and Docker | mmkaram</title><link rel=canonical href=https://mmkaram.github.io/posts/cicd/><meta property="og:url" content="https://mmkaram.github.io/posts/cicd/"><meta property="og:site_name" content="mmkaram"><meta property="og:title" content="Setting up my own server with CI/CD and Docker"><meta property="og:description" content="How I went about setting up a VPS to run my web app"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-02-13T00:00:00+00:00"><meta property="article:modified_time" content="2025-02-13T00:00:00+00:00"><link rel=stylesheet href=/assets/combined.min.186794b3399a702d3092949042cdc215dea303c17e71e7c0254768448de11db8.css media=all></head><body class=auto><div class=content><header><div class=header><h1 class=header-title><a href=https://mmkaram.github.io/>mmkaram</a></h1><div class=flex><p class=small><a href=/>/home</a></p><p class=small><a href=/posts>/posts</a></p><p class=small><a href=/projects>/projects</a></p></div></div></header><main class=main><div class=breadcrumbs><a href=/>mmkaram</a>
+<span class=breadcrumbs-separator>> </span><a href=/posts/>Posts</a>
+<span class=breadcrumbs-separator>> </span><a class=breadcrumbs-current href=/posts/cicd/>Setting up my own server with CI/CD and Docker</a></div><div><div class=single-intro-container><h1 class=single-title>Setting up my own server with CI/CD and Docker</h1><p class=single-summary>How I went about setting up a VPS to run my web app</p><p class=single-readtime><time datetime=2025-02-13T00:00:00+00:00>February 13, 2025</time></p></div><div class=single-content><h1 class=heading id=introduction>Introduction
+<a href=#introduction>#</a></h1><p>I&rsquo;m getting really close to deploying my B2C automous squash coaching app <a href=/projects/squashai>SquashAI</a>. For it to trully be busniess to consumer though, I needed a way for users to upload their videos so they can be queued for analysis. After watching enough of <a href=https://www.youtube.com/@t3dotgg>theo&rsquo;s</a> I was convinced to use NextJS with it&rsquo;s fancy app router and SSR, even though I had very little exprience with javascript, much less typescript and tsx. When it came to deploying, the natural choice wast ercel, which was actually one of the easiest &ldquo;technical&rdquo; things I&rsquo;ve ever set up in my life. It was as simple as linking my github account, picking the repository that contained my NextJS application, and uploading my <code>.env.local</code>.</p><p>Vercel did it&rsquo;s magic. Being able to test my UI with Vercel&rsquo;s automatic deployments and nice UI made me a very happy camper. The problems started to show, though, once I had to start implementing the actual analysis part of the app (you know, the important part).</p><p>Vercel only lets users upload <a href=https://github.com/payloadcms/payload/discussions/7569>4.5mb</a> in a single request. And given that video files can be quite large, this wouldn&rsquo;t fly. Problem was, most other providers had a limitation like this (my theory is because they&rsquo;re all AWS wrappers and that&rsquo;s the upload limit on AWS lambda). So, I had to look elsewhere for a solution. This brought me to some of the most fun I&rsquo;ve had in a while, the VPS!</p><p>After watching <a href="https://www.youtube.com/watch?v=F-9KWQByeU0&amp;t=1110s">this video</a> by Dreams of Code, I was inspired to get spin up a VPS and see how far I could get trying to replicate these platofrms as a service services like Vercel, railway.com, and netlify.</p><p>Inspired by the video, I decided to make my own requirements for this VPS system to be considered production ready.</p><p>Mahdy&rsquo;s 5 Requirements for a Production Ready VPS:</p><ul><li>Is publicly available on the internet</li><li>Automatically deploys new versions of my application when they&rsquo;re pushed to prod</li><li>Be reproduicble (this was inspired by my year long usage of <a href=/posts/nixos>NixOS</a>)</li><li>High availability, even when new versions are being deployed.</li><li>Be as secure as I could reasonably make it</li></ul><p>With my needs laid out, it was time to start building.</p><h2 class=heading id=automatic-deployment-and-testing-cicd>Automatic Deployment and Testing (CI/CD)
+<a href=#automatic-deployment-and-testing-cicd>#</a></h2><h3 class=heading id=setup>Setup
+<a href=#setup>#</a></h3><p>Before I can begin explaining how I deployed this app to my many users on the internet, I should probably explain how my project is set up.</p><p>All of the code for this bad boy to run is contained in two repos:
 - NextJS site (to handle user&rsquo;s video uploads and to allow users to see their past analyses)
-- Flask API server (actually runs the automous coaching program)</p>
-<p>Each one of these had to have it&rsquo;s own <code>Dockerfile</code> written so that I could build them and have the VPS pull them down to maintain reproducibility.</p>
-<p>Here&rsquo;s what the <code>Dockerfile</code> for the NextJS application looks like:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span><span style="font-weight:bold;text-decoration:underline">FROM</span><span style="color:#666;font-style:italic"> node:20-alpine AS builder</span><span style="">
-</span></span></span><span style="display:flex;"><span><span style=""></span><span style="font-weight:bold;text-decoration:underline">WORKDIR</span><span style="color:#666;font-style:italic"> /app</span><span style="">
-</span></span></span><span style="display:flex;"><span><span style=""></span><span style="font-weight:bold;text-decoration:underline">COPY</span> . .<span style="">
-</span></span></span><span style="display:flex;"><span><span style=""></span><span style="font-weight:bold;text-decoration:underline">RUN</span> rm -rf .next/<span style="">
-</span></span></span><span style="display:flex;"><span><span style=""></span><span style="font-weight:bold;text-decoration:underline">RUN</span> npm i<span style="">
-</span></span></span><span style="display:flex;"><span><span style=""></span><span style="font-weight:bold;text-decoration:underline">RUN</span> npm run build<span style="">
-</span></span></span><span style="display:flex;"><span><span style=""></span><span style="font-weight:bold;text-decoration:underline">RUN</span> npx prisma generate<span style="">
-</span></span></span><span style="display:flex;"><span><span style="">
-</span></span></span><span style="display:flex;"><span><span style=""></span><span style="font-weight:bold;text-decoration:underline">FROM</span><span style="color:#666;font-style:italic"> node:20-alpine AS runner</span><span style="">
-</span></span></span><span style="display:flex;"><span><span style=""></span><span style="font-weight:bold;text-decoration:underline">WORKDIR</span><span style="color:#666;font-style:italic"> /app</span><span style="">
-</span></span></span><span style="display:flex;"><span><span style=""></span><span style="font-weight:bold;text-decoration:underline">COPY</span> --from=builder /app/.next ./.next<span style="">
-</span></span></span><span style="display:flex;"><span><span style=""></span><span style="font-weight:bold;text-decoration:underline">COPY</span> --from=builder /app/public ./public<span style="">
-</span></span></span><span style="display:flex;"><span><span style=""></span><span style="font-weight:bold;text-decoration:underline">COPY</span> --from=builder /app/package.json .<span style="">
-</span></span></span><span style="display:flex;"><span><span style=""></span><span style="font-weight:bold;text-decoration:underline">COPY</span> --from=builder /app/package-lock.json .<span style="">
-</span></span></span><span style="display:flex;"><span><span style=""></span><span style="font-weight:bold;text-decoration:underline">COPY</span> --from=builder /app/node_modules ./node_modules<span style="">
-</span></span></span><span style="display:flex;"><span><span style=""></span><span style="font-weight:bold;text-decoration:underline">COPY</span> --from=builder /app/prisma ./prisma<span style="">
-</span></span></span><span style="display:flex;"><span><span style=""></span><span style="font-weight:bold;text-decoration:underline">COPY</span> --from=builder /app/app ./app<span style="">
-</span></span></span><span style="display:flex;"><span><span style=""></span><span style="font-weight:bold;text-decoration:underline">COPY</span> --from=builder /app/next.config.ts ./next.config.ts<span style="">
-</span></span></span><span style="display:flex;"><span><span style=""></span><span style="font-weight:bold;text-decoration:underline">ENV</span> <span style="color:#666;font-weight:bold;font-style:italic">NODE_OPTIONS</span>=<span style="color:#666;font-style:italic">&#34;--max-old-space-size=8192&#34;</span><span style="">
-</span></span></span><span style="display:flex;"><span><span style=""></span><span style="font-weight:bold;text-decoration:underline">RUN</span> npx next telemetry disable<span style="">
-</span></span></span><span style="display:flex;"><span><span style=""></span><span style="font-weight:bold;text-decoration:underline">EXPOSE</span><span style="color:#666;font-style:italic"> 3000</span><span style="">
-</span></span></span><span style="display:flex;"><span><span style=""></span><span style="font-weight:bold;text-decoration:underline">CMD</span> [<span style="color:#666;font-style:italic">&#34;npm&#34;</span>, <span style="color:#666;font-style:italic">&#34;start&#34;</span>]<span style="">
-</span></span></span></code></pre></div><p>The one for the flask server is similar from a high level perspective. It also contains a build step and a run step, just with a different toolchain to accomadate the different language. Both of these repos then needed a github action yaml file, located in the <code>./.github/workflows/</code> directory to install dependencies, run tests, then build those containers and push them to the GitHub container registry. This yaml file can get quite long, so I&rsquo;ve linked the workflow for the NextJS project <a href="https://gist.github.com/mmkaram/fc77b5c6bf3269b9d20dd9bdd62c8afd">here</a>.</p>
-<p>Ok, so I can build containerized versions of my repos and push them to a container registry, but how do I get that on the VPS without having to manually ssh into the box and tell docker to pull new containers? Well, Mahdy, that&rsquo;s a great question! This brings us to the glue that holds this system together: Docker Compose.</p>
-<h3 class="heading" id="vps-cicd">
-  VPS CI/CD
-  <a href="#vps-cicd">#</a>
-</h3>
-<p>With docker compose, I can specify which containers I need to be pulled down, configure them, specifiy enviorment variables, and define how they should interact with each other. Then, then <code>docker compose up</code> command does most of the heavy lifting for me! To set up automatic deployments, I used the <a href="https://containrrr.dev/watchtower/">watchtower</a> container to check for new versions of my two project containers every 30 seconds. If a new container is found, it pulls them down and runs them. Additonally, I also configured it to restart my containers one at a time, by specifying the <code>--rolling-restart</code> flag to help with availability by always having at least one container up. Here&rsquo;s the full watchtower setup in my <code>compose.yml</code>:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>  watchtower:
-</span></span><span style="display:flex;"><span>    image: containrrr/watchtower
-</span></span><span style="display:flex;"><span>    command:
-</span></span><span style="display:flex;"><span>      - <span style="color:#666;font-style:italic">&#34;--label-enable&#34;</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#666;font-style:italic">&#34;--interval&#34;</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#666;font-style:italic">&#34;30&#34;</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#666;font-style:italic">&#34;--rolling-restart&#34;</span>
-</span></span><span style="display:flex;"><span>    volumes:
-</span></span><span style="display:flex;"><span>      - /var/run/docker.sock:/var/run/docker.sock
-</span></span></code></pre></div><p>And set these labels to both the NextJS and flask containers:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    labels:
-</span></span><span style="display:flex;"><span>      - <span style="color:#666;font-style:italic">&#34;com.centurylinklabs.watchtower.enable=true&#34;</span>
-</span></span></code></pre></div><p>That&rsquo;s one requirement done! To finish setting up high availability, I set the <code>deploy</code> arguments in the <code>compose.yml</code> as follows for both containers as well:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>    deploy:
-</span></span><span style="display:flex;"><span>      mode: replicated
-</span></span><span style="display:flex;"><span>      replicas: 2
-</span></span></code></pre></div><p>Ok, sweet, that&rsquo;s three requirements done if you consider this is entirely dockerized and backed up to github which is already pretty reproducible for my needs.</p>
-<h2 class="heading" id="dns-reverse-proxy-and-publicly-facing-sites">
-  DNS, Reverse Proxy, and Publicly Facing Sites
-  <a href="#dns-reverse-proxy-and-publicly-facing-sites">#</a>
-</h2>
-<p>My VPS has a admin system that allows subdomains from it&rsquo;s higher level domain to be configured to point to your VPS&rsquo;s IP address. After setting that up, it&rsquo;s a matter of getting that https request to point to my NextJS server. There are many ways to use this, <a href="https://doc.traefik.io/traefik/">traeffic</a> was recommended to me as well as being mentioned in the video I linked above. But for me, when I hear reverse proxy, I hear NGINX, so that&rsquo;s what I did.</p>
-<p>Keeping up with the theme of repoducibility, I found the official docker container for nginx, and set it with my current docker compose system. Given that I had used NGINX before, this was as easy as taking what used to be a split and messy confuguration that lives inside multiple subdirectoriese of <code>/etc/nginx/</code> and put it in one nginx.conf file that lived in the same directory as my <code>compose.yml</code> file.</p>
-<p>All this file did was point all https traffic coming from the websites domain to port 3000, which is the port where NextJS was hosting my web app.</p>
-<p>Just like that, we only had one more requirement to go.</p>
-<h2 class="heading" id="security">
-  Security
-  <a href="#security">#</a>
-</h2>
-<p>There are a couple of obvious things I could do to improve security right off the bat, low hanging fruits one may say:</p>
-<ul>
-<li>Disable logging into ssh via password and requiring an ssh key</li>
-<li>Not running NextJS in dev mode</li>
-<li>Not running flask in dev mode</li>
-<li>Setting prod specific enviorment variables</li>
-<li>Setting up a firewall using uwf so all traffic can go out, but only traffic through port 22 and 443</li>
-</ul>
-<p>And just like that, we&rsquo;re done!</p>
-<h2 class="heading" id="final-notes">
-  Final notes
-  <a href="#final-notes">#</a>
-</h2>
-<p>These are some things that I am aware of/want to do in the future, so consider this a todo list for future me concerning this topic.</p>
-<ul>
-<li>I would like to eventually redirect http traffic to https, instead of blocking it completely</li>
-<li>I know docker isn&rsquo;t as reporduible as nix, so maybe figure out how to get nix working with this setup</li>
-<li>Possibly make ufw reproducible too?</li>
-<li>It would be nice to have a analytics/down detector system going</li>
-</ul>
-
-    
-  </div>
-
-  
-
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-  <div class="back-to-top">
-    <a href="#top">
-      back to top
-    </a>
-  </div>
-  
-
-</div>
-
-
-      </main>
-    </div>
-
-    <footer>
-      
-
-    
-    <p>Powered by
-        <a href="https://gohugo.io/">Hugo</a>
-        and
-        <a href="https://github.com/tomfran/typo">tomfran/typo</a>
-    </p>
-    
-    
-    
-
-
-    </footer>
-
-    
-
-  </body>
-
-  <script>
-
-  function isAuto() {
-    return document.body.classList.contains("auto");
-  }
-
-  function setTheme() {
-    if (!isAuto()) {
-      return
-    }
-
-    document.body.classList.remove("auto");
-    let cls = "light";
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      cls = "dark";
-    }
-
-    document.body.classList.add(cls);
-  }
-
-  function invertBody() {
-    document.body.classList.toggle("dark");
-    document.body.classList.toggle("light");
-  }
-
-  if (isAuto()) {
-    window.matchMedia('(prefers-color-scheme: dark)').addListener(invertBody);
-  }
-
-  setTheme();
-
-</script>
-
-</html>
+- Flask API server (actually runs the automous coaching program)</p><p>Each one of these had to have it&rsquo;s own <code>Dockerfile</code> written so that I could build them and have the VPS pull them down to maintain reproducibility.</p><p>Here&rsquo;s what the <code>Dockerfile</code> for the NextJS application looks like:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-docker data-lang=docker><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>FROM</span><span style=color:#666;font-style:italic> node:20-alpine AS builder</span><span>
+</span></span></span><span style=display:flex><span><span></span><span style=font-weight:700;text-decoration:underline>WORKDIR</span><span style=color:#666;font-style:italic> /app</span><span>
+</span></span></span><span style=display:flex><span><span></span><span style=font-weight:700;text-decoration:underline>COPY</span> . .<span>
+</span></span></span><span style=display:flex><span><span></span><span style=font-weight:700;text-decoration:underline>RUN</span> rm -rf .next/<span>
+</span></span></span><span style=display:flex><span><span></span><span style=font-weight:700;text-decoration:underline>RUN</span> npm i<span>
+</span></span></span><span style=display:flex><span><span></span><span style=font-weight:700;text-decoration:underline>RUN</span> npm run build<span>
+</span></span></span><span style=display:flex><span><span></span><span style=font-weight:700;text-decoration:underline>RUN</span> npx prisma generate<span>
+</span></span></span><span style=display:flex><span><span>
+</span></span></span><span style=display:flex><span><span></span><span style=font-weight:700;text-decoration:underline>FROM</span><span style=color:#666;font-style:italic> node:20-alpine AS runner</span><span>
+</span></span></span><span style=display:flex><span><span></span><span style=font-weight:700;text-decoration:underline>WORKDIR</span><span style=color:#666;font-style:italic> /app</span><span>
+</span></span></span><span style=display:flex><span><span></span><span style=font-weight:700;text-decoration:underline>COPY</span> --from=builder /app/.next ./.next<span>
+</span></span></span><span style=display:flex><span><span></span><span style=font-weight:700;text-decoration:underline>COPY</span> --from=builder /app/public ./public<span>
+</span></span></span><span style=display:flex><span><span></span><span style=font-weight:700;text-decoration:underline>COPY</span> --from=builder /app/package.json .<span>
+</span></span></span><span style=display:flex><span><span></span><span style=font-weight:700;text-decoration:underline>COPY</span> --from=builder /app/package-lock.json .<span>
+</span></span></span><span style=display:flex><span><span></span><span style=font-weight:700;text-decoration:underline>COPY</span> --from=builder /app/node_modules ./node_modules<span>
+</span></span></span><span style=display:flex><span><span></span><span style=font-weight:700;text-decoration:underline>COPY</span> --from=builder /app/prisma ./prisma<span>
+</span></span></span><span style=display:flex><span><span></span><span style=font-weight:700;text-decoration:underline>COPY</span> --from=builder /app/app ./app<span>
+</span></span></span><span style=display:flex><span><span></span><span style=font-weight:700;text-decoration:underline>COPY</span> --from=builder /app/next.config.ts ./next.config.ts<span>
+</span></span></span><span style=display:flex><span><span></span><span style=font-weight:700;text-decoration:underline>ENV</span> <span style=color:#666;font-weight:700;font-style:italic>NODE_OPTIONS</span>=<span style=color:#666;font-style:italic>&#34;--max-old-space-size=8192&#34;</span><span>
+</span></span></span><span style=display:flex><span><span></span><span style=font-weight:700;text-decoration:underline>RUN</span> npx next telemetry disable<span>
+</span></span></span><span style=display:flex><span><span></span><span style=font-weight:700;text-decoration:underline>EXPOSE</span><span style=color:#666;font-style:italic> 3000</span><span>
+</span></span></span><span style=display:flex><span><span></span><span style=font-weight:700;text-decoration:underline>CMD</span> [<span style=color:#666;font-style:italic>&#34;npm&#34;</span>, <span style=color:#666;font-style:italic>&#34;start&#34;</span>]<span>
+</span></span></span></code></pre></div><p>The one for the flask server is similar from a high level perspective. It also contains a build step and a run step, just with a different toolchain to accomadate the different language. Both of these repos then needed a github action yaml file, located in the <code>./.github/workflows/</code> directory to install dependencies, run tests, then build those containers and push them to the GitHub container registry. This yaml file can get quite long, so I&rsquo;ve linked the workflow for the NextJS project <a href=https://gist.github.com/mmkaram/fc77b5c6bf3269b9d20dd9bdd62c8afd>here</a>.</p><p>Ok, so I can build containerized versions of my repos and push them to a container registry, but how do I get that on the VPS without having to manually ssh into the box and tell docker to pull new containers? Well, Mahdy, that&rsquo;s a great question! This brings us to the glue that holds this system together: Docker Compose.</p><h3 class=heading id=vps-cicd>VPS CI/CD
+<a href=#vps-cicd>#</a></h3><p>With docker compose, I can specify which containers I need to be pulled down, configure them, specifiy enviorment variables, and define how they should interact with each other. Then, then <code>docker compose up</code> command does most of the heavy lifting for me! To set up automatic deployments, I used the <a href=https://containrrr.dev/watchtower/>watchtower</a> container to check for new versions of my two project containers every 30 seconds. If a new container is found, it pulls them down and runs them. Additonally, I also configured it to restart my containers one at a time, by specifying the <code>--rolling-restart</code> flag to help with availability by always having at least one container up. Here&rsquo;s the full watchtower setup in my <code>compose.yml</code>:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=display:flex><span>  watchtower:
+</span></span><span style=display:flex><span>    image: containrrr/watchtower
+</span></span><span style=display:flex><span>    command:
+</span></span><span style=display:flex><span>      - <span style=color:#666;font-style:italic>&#34;--label-enable&#34;</span>
+</span></span><span style=display:flex><span>      - <span style=color:#666;font-style:italic>&#34;--interval&#34;</span>
+</span></span><span style=display:flex><span>      - <span style=color:#666;font-style:italic>&#34;30&#34;</span>
+</span></span><span style=display:flex><span>      - <span style=color:#666;font-style:italic>&#34;--rolling-restart&#34;</span>
+</span></span><span style=display:flex><span>    volumes:
+</span></span><span style=display:flex><span>      - /var/run/docker.sock:/var/run/docker.sock
+</span></span></code></pre></div><p>And set these labels to both the NextJS and flask containers:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=display:flex><span>    labels:
+</span></span><span style=display:flex><span>      - <span style=color:#666;font-style:italic>&#34;com.centurylinklabs.watchtower.enable=true&#34;</span>
+</span></span></code></pre></div><p>That&rsquo;s one requirement done! To finish setting up high availability, I set the <code>deploy</code> arguments in the <code>compose.yml</code> as follows for both containers as well:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=display:flex><span>    deploy:
+</span></span><span style=display:flex><span>      mode: replicated
+</span></span><span style=display:flex><span>      replicas: 2
+</span></span></code></pre></div><p>Ok, sweet, that&rsquo;s three requirements done if you consider this is entirely dockerized and backed up to github which is already pretty reproducible for my needs.</p><h2 class=heading id=dns-reverse-proxy-and-publicly-facing-sites>DNS, Reverse Proxy, and Publicly Facing Sites
+<a href=#dns-reverse-proxy-and-publicly-facing-sites>#</a></h2><p>My VPS has a admin system that allows subdomains from it&rsquo;s higher level domain to be configured to point to your VPS&rsquo;s IP address. After setting that up, it&rsquo;s a matter of getting that https request to point to my NextJS server. There are many ways to use this, <a href=https://doc.traefik.io/traefik/>traeffic</a> was recommended to me as well as being mentioned in the video I linked above. This was a chance for me to go off the beaten path and learn something newer and less archaic than nginx(which I&rsquo;ve used for other projects before). With it&rsquo;s strange syntax and strange configuration file setup, you&rsquo;d really think this program wasn&rsquo;t designed for the modern web. Plus, no one would willingly go out of their way to write nginx configurations that are deployable with docker when there are other options available, right?</p><h3 class=heading id=writing-nginx-configurations-that-are-deployable-with-docker>Writing nginx configurations that are deployable with docker
+<a href=#writing-nginx-configurations-that-are-deployable-with-docker>#</a></h3><p>I found the official docker container for nginx, and set it with my current docker compose system. Given that I had used NGINX before, this was as easy as taking what used to be a split and messy confuguration that lives inside multiple subdirectoriese of <code>/etc/nginx/</code> and put it in one nginx.conf file that lived in the same directory as my <code>compose.yml</code> file.</p><p>All this file did was point all https traffic coming from the websites domain to port 3000, which is the port where NextJS was hosting my web app.</p><p>Just like that, we only had one more requirement to go.</p><h2 class=heading id=security>Security
+<a href=#security>#</a></h2><p>There are a couple of obvious things I did off the bat to improve security, low hanging fruits one may say:</p><ul><li>Disable logging into ssh via password and requiring an ssh key</li><li>Not running NextJS in dev mode</li><li>Not running flask in dev mode</li><li>Setting prod specific enviorment variables</li><li>Setting up a firewall using uwf so all traffic can go out, but only traffic through port 22 and 443</li></ul><p>And just like that, we&rsquo;re done!</p><h2 class=heading id=final-notes>Final notes
+<a href=#final-notes>#</a></h2><p>I really enjoyed setting this up!</p><p>These are some things that I am aware of/want to do in the future, so consider this a todo list for future me concerning this topic.</p><ul><li>I would like to eventually redirect http traffic to https, instead of blocking it completely</li><li>I know docker isn&rsquo;t as reporduible as nix, so maybe figure out how to get nix working with this setup</li><li>Possibly make ufw reproducible too?</li><li>It would be nice to have a analytics/down detector system going</li></ul></div><div class=back-to-top><a href=#top>back to top</a></div></div></main></div><footer><p>Powered by
+<a href=https://gohugo.io/>Hugo</a>
+and
+<a href=https://github.com/tomfran/typo>tomfran/typo</a></p></footer></body><script>function isAuto(){return document.body.classList.contains("auto")}function setTheme(){if(!isAuto())return;document.body.classList.remove("auto");let e="light";window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches&&(e="dark"),document.body.classList.add(e)}function invertBody(){document.body.classList.toggle("dark"),document.body.classList.toggle("light")}isAuto()&&window.matchMedia("(prefers-color-scheme: dark)").addListener(invertBody),setTheme()</script></html>
