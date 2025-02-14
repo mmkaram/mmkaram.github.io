@@ -1,1 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on mmkaram</title><link>https://mmkaram.github.io/posts/</link><description>Recent content in Posts on mmkaram</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 13 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://mmkaram.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Setting up my own server with CI/CD and Docker</title><link>https://mmkaram.github.io/posts/cicd/</link><pubDate>Thu, 13 Feb 2025 00:00:00 +0000</pubDate><guid>https://mmkaram.github.io/posts/cicd/</guid><description>How I went about setting up a VPS to run my web app</description></item><item><title>AI Sucks.</title><link>https://mmkaram.github.io/posts/aisucks/</link><pubDate>Thu, 06 Feb 2025 00:00:00 +0000</pubDate><guid>https://mmkaram.github.io/posts/aisucks/</guid><description>I don&amp;rsquo;t want to see a bot&amp;rsquo;s dumb ideas, I want to your dumb ideas.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on mmkaram</title>
+    <link>http://localhost:1313/posts/</link>
+    <description>Recent content in Posts on mmkaram</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 13 Feb 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Setting up my own server with CI/CD and Docker</title>
+      <link>http://localhost:1313/posts/cicd/</link>
+      <pubDate>Thu, 13 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/cicd/</guid>
+      <description>How I went about setting up a VPS to run my web app</description>
+    </item>
+    <item>
+      <title>AI Sucks.</title>
+      <link>http://localhost:1313/posts/aisucks/</link>
+      <pubDate>Thu, 06 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/aisucks/</guid>
+      <description>I don&amp;rsquo;t want to see a bot&amp;rsquo;s dumb ideas, I want to your dumb ideas.</description>
+    </item>
+  </channel>
+</rss>

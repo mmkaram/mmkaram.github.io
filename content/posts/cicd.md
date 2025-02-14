@@ -17,11 +17,11 @@ After watching [this video](https://www.youtube.com/watch?v=F-9KWQByeU0&t=1110s)
 Inspired by the video, I decided to make my own requirements for this VPS system to be considered production ready.
 
 Mahdy's 5 Requirements for a Production Ready VPS:
-    - Is publicly available on the internet
-    - Automatically deploys new versions of my application when they're pushed to prod
-    - Be reproduicble (this was inspired by my year long usage of [NixOS](/posts/nixos))
-    - High availability, even when new versions are being deployed.
-    - Be as secure as I could reasonably make it
+- Is publicly available on the internet
+- Automatically deploys new versions of my application when they're pushed to prod
+- Be reproduicble (this was inspired by my year long usage of [NixOS](/posts/nixos))
+- High availability, even when new versions are being deployed.
+- Be as secure as I could reasonably make it
 
 With my needs laid out, it was time to start building.
 
