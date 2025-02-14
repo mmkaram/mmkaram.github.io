@@ -1,7 +1,7 @@
 ---
 title: "Deploying my own server with CI/CD and Docker"
-date: 2025-03-24
-draft: false
+date: 2025-02-13
+draft: 
 summary: "How I went about setting up a VPS to run my web app"
 ---
 
@@ -93,3 +93,34 @@ That's one requirement done! To have high availability, I set the `deploy` argum
       mode: replicated
       replicas: 2
 ```
+
+Ok, sweet, that's two requirements done, three if you consider this is entirely dockerized and backed up to github which is already pretty reproducible for my needs.
+
+## Publicly facing
+
+My VPS has a admin system that allows subdomains from it's higher level domain to be configured to point to your VPS's IP address. After setting that up, it's a matter of getting that https request to point to my NextJS server. There are many ways to use this, [traeffic](https://doc.traefik.io/traefik/) was recommended to me as well as being mentioned in the video I linked above. But for me, when I hear reverse proxy, I hear NGINX, so that's what I did.
+
+Keeping up with the theme of repoducibility, I found the official docker container for nginx, and set it with my current docker compose system. Given that I had used NGINX before, this was as easy as taking what used to be a split and messy confuguration that lives inside multiple subdirectoriese of `/etc/nginx/` and put it in one nginx.conf file that lived in the same directory as my `compose.yml` file. 
+
+All this file did was point all https traffic coming from the websites domain to port 3000, which is the port where NextJS was hosting my web app. 
+
+Just like that, we only had one more requirement to go.
+
+## Security
+
+There are a couple of obvious things I could do to improve security right off the bat, low hanging fruits one may say:
+- Disable logging into ssh via password and requiring an ssh key
+- Not running NextJS in dev mode
+- Not running flask in dev mode
+- Setting prod specific enviorment variables
+- Setting up a firewall using uwf so all traffic can go out, but only traffic through port 22 and 443
+
+And just like that, we're done!
+
+## Final notes
+
+These are some things that I am aware of/want to do in the future, so consider this a todo list for future me concerning this topic.
+- I would like to eventually redirect http traffic to https, instead of blocking it completely
+- I know docker isn't as reporduible as nix, so maybe figure out how to get nix working with this setup
+- Possibly make ufw reproducible too?
+- It would be nice to have a analytics/down detector system going
