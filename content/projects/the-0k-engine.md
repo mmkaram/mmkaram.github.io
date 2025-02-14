@@ -14,5 +14,5 @@ For what concerns the actual engine, my first attempt at an evaluation function 
 Probably like, 700. Maybe worse
 
 #### What I learned
-I have another ongoing project, [SquashAI](/posts/squashai), where I was going to use a deep learning algorithm to teach the program what a good shot/play was. Chess programming introduced me to evaluation functions. I think I have some ideas on how to implement those into the squash coaching program.
+I have another ongoing project, [SquashAI](/projects/squashai), where I was going to use a deep learning algorithm to teach the program what a good shot/play was. Chess programming introduced me to evaluation functions. I think I have some ideas on how to implement those into the squash coaching program.
 
