@@ -1,7 +1,7 @@
 ---
 title: "Deploying my own server with CI/CD and Docker"
 date: 2025-02-13
-draft: 
+draft: false
 summary: "How I went about setting up a VPS to run my web app"
 ---
 
