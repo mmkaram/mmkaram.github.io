@@ -1,7 +1,7 @@
 ---
 title: "AI Sucks."
 date: 2025-02-06
-draft: false
+draft: true
 summary: "I don't want to see a bot's dumb ideas, I want to your dumb ideas."
 ---
 

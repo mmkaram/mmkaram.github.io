@@ -16,13 +16,6 @@
       <description>How I went about setting up a VPS to run my web app</description>
     </item>
     <item>
-      <title>AI Sucks.</title>
-      <link>http://localhost:1313/posts/aisucks/</link>
-      <pubDate>Thu, 06 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/aisucks/</guid>
-      <description>I don&amp;rsquo;t want to see a bot&amp;rsquo;s dumb ideas, I want to your dumb ideas.</description>
-    </item>
-    <item>
       <title>Railsy</title>
       <link>http://localhost:1313/projects/railsy/</link>
       <pubDate>Wed, 11 Dec 2024 00:00:00 +0000</pubDate>
