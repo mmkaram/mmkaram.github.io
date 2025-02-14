@@ -1,5 +1,5 @@
 ---
-title: "Deploying my own server with CI/CD and Docker"
+title: "Setting up my own server with CI/CD and Docker"
 date: 2025-02-13
 draft: false
 summary: "How I went about setting up a VPS to run my web app"
