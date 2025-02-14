@@ -10,7 +10,7 @@ I'm getting really close to deploying my B2C automous squash coaching app [Squas
 
 Vercel did it's magic. Being able to test my UI with Vercel's automatic deployments and nice UI made me a very happy camper. The problems started to show, though, once I had to start implementing the actual analysis part of the app (you know, the important part).
 
-Vercel only lets users upload [4.5mb](https://github.com/payloadcms/payload/discussions/7569) in a single request. And given that video files can be quite large, this wouldn't fly. Problem was, most other providers had a limitation like this (my theory is because they're all AWS wrappers and that's the upload limit on AWS lambda). So, I had to look elsewhere for a solution. This brought me to some of the most fun I've had in a while, the VPS!
+Vercel only lets users upload [4.5mb](https://github.com/payloadcms/payload/discussions/7569) in a single request. And given that video files can be quite large, this wouldn't fly. Problem was, most other providers had a limitation like this (my theory is they're all AWS wrappers and that's the upload limit on AWS lambda). So, I had to look elsewhere for a solution. This brought me to some of the most fun I've had in a while, the VPS!
 
 After watching [this video](https://www.youtube.com/watch?v=F-9KWQByeU0&t=1110s) by Dreams of Code, I was inspired to get spin up a VPS and see how far I could get trying to replicate these platofrms as a service services like Vercel, railway.com, and netlify.
 
@@ -19,7 +19,7 @@ Inspired by the video, I decided to make my own requirements for this VPS system
 Mahdy's 5 Requirements for a Production Ready VPS:
 - Is publicly available on the internet
 - Automatically deploys new versions of my application when they're pushed to prod
-- Be reproduicble (this was inspired by my year long usage of [NixOS](/posts/nixos))
+- Be reproduicble (inspired by my year long usage of [NixOS](/posts/nixos))
 - High availability, even when new versions are being deployed.
 - Be as secure as I could reasonably make it
 
