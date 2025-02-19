@@ -6,7 +6,9 @@ summary: "How I went about setting up a VPS to run my web app"
 ---
 
 # Introduction
-I'm getting really close to deploying my B2C automous squash coaching app [SquashAI](/projects/squashai). For it to trully be busniess to consumer though, I needed a way for users to upload their videos so they can be queued for analysis. After watching enough of [theo's](https://www.youtube.com/@t3dotgg) youtube content I was convinced to use NextJS with it's fancy app router and SSR, even though I had very little exprience with javascript, much less typescript and tsx. This was a whole ordeal on its own, so stay tuned for a post about my time in web development. When it came to deploying, the natural choice wast ercel, which was actually one of the easiest "technical" things I've ever set up in my life. It was as simple as linking my github account, picking the repository that contained my NextJS application, and uploading my `.env.local`.
+I'm nearing the deployment of my B2C autonomous squash coaching app, SquashAI. To truly make it business-to-consumer, I needed a way for users to upload their videos so they could be queued for analysis. After watching a lot of Theo's content on YouTube, I was convinced to use Next.js with its modern app router and server-side rendering (SSR). This was a big leap for me, as I had minimal experience with JavaScript—let alone TypeScript and TSX. It turned into quite an adventure, but I'll save the details for another post about my journey into web development.
+
+When it came to deployment, Vercel was the obvious choice. Surprisingly, it turned out to be one of the easiest "technical" tasks I've ever done. All I had to do was link my GitHub account, select the repository containing my Next.js app, and upload my `.env.local` file. It was that simple.
 
 Vercel did it's magic. Being able to test my UI with Vercel's automatic deployments and nice UI made me a very happy camper. The problems started to show, though, once I had to start implementing the actual analysis part of the app (you know, the important part).
 
