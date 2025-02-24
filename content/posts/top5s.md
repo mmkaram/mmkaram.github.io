@@ -67,3 +67,19 @@ summary: "A collection of my top 5 of many mediums"
 4. BMW 8 Series Sabriolet
 5. Mitsubishi Lancer
 > HM: Fiat 500
+
+## Software
+1. NixOS
+2. NeoVim
+3. Docker
+4. Zoxide
+5. Fish
+> HM: NextJS
+
+## Devices:
+1. Lenovo Thinkpad
+2. Xbox One
+3. Prusa mini
+4. Kindle Paperwhite
+5. CASIO AE1200WH-1A
+> HM: Sony a6400
