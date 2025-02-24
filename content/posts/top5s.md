@@ -76,10 +76,26 @@ summary: "A collection of my top 5 of many mediums"
 5. Fish
 > HM: NextJS
 
-## Devices:
+## Devices
 1. Lenovo Thinkpad
 2. Xbox One
 3. Prusa mini
 4. Kindle Paperwhite
 5. CASIO AE1200WH-1A
 > HM: Sony a6400
+
+## Cities
+1. Cairo, Egypt
+2. Seattle, WA, USA
+3. Salzburg, Austria
+4. San Diego, CA, USA
+5. Cologne, Germany
+> HM: Edinburgh, Scotland
+
+## Planes
+1. F-16
+2. F-15E
+3. F-117
+4. B-2 Spirit
+5. F-35
+> HM: Cessna 172
