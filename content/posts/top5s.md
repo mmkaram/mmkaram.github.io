@@ -51,3 +51,19 @@ summary: "A collection of my top 5 of many mediums"
 4. Metro Boomin
 5. GIMS
 > HM: Ilmond
+
+## Programming Languages
+1. C++
+2. Rust
+3. Python
+4. Typescript
+5. Java
+> HM: Bash
+
+## Cars
+1. Ferrari 256 GTS
+2. BMW M1 (1978)
+3. LaFerrari Aperta
+4. BMW 8 Series Sabriolet
+5. Mitsubishi Lancer
+> HM: Fiat 500
