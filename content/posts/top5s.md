@@ -64,7 +64,7 @@ summary: "A collection of my top 5 of many mediums"
 1. Ferrari 256 GTS
 2. BMW M1 (1978)
 3. LaFerrari Aperta
-4. BMW 8 Series Sabriolet
+4. BMW 8 Series Cabriolet
 5. Mitsubishi Lancer
 > HM: Fiat 500
 
