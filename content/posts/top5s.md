@@ -4,6 +4,8 @@ date: 2025-02-23
 draft: false
 summary: "A collection of my top 5 of many mediums"
 ---
+I created this page as a basic reference of markdown syntax, but keeping a list of these things is also cool I guess.
+
 ## Movies:
 1. Pirates of the Caribbean: At World's End (2007)
 2. The Penguins of Madagascar (2008)
