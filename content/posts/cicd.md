@@ -10,7 +10,7 @@ I'm nearing the deployment of my B2C autonomous squash coaching app, [SquashAI](
 
 When it came to deployment, Vercel was the obvious choice. Surprisingly, it turned out to be one of the easiest "technical" tasks I've ever done. All I had to do was link my GitHub account, select the repository containing my Next.js app, and upload my `.env.local` file. It was that simple.
 
-Vercel did it's magic. Being able to test my UI with Vercel's automatic deployments and nice UI made me a very happy camper. The problems started to show, though, once I had to start implementing the actual analysis part of the app (you know, the important part).
+Vercel did it's magic. Being able to test my application logic with Vercel's automatic deployments and nice UI made me a very happy camper. The problems started to show, though, once I had to start implementing the actual analysis part of the app (you know, the important part).
 
 Vercel only lets users upload [4.5mb](https://github.com/payloadcms/payload/discussions/7569) in a single request. And given that video files can be quite large, this wouldn't fly. Problem was, most other providers had a limitation like this (my theory is they're all AWS wrappers and that's the upload limit on AWS lambda). So, I had to look elsewhere for a solution. This brought me to some of the most fun I've had in a while, the VPS!
 
