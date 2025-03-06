@@ -78,6 +78,7 @@ With docker compose, I can specify which containers I need to be pulled down, co
     command:
       - "--label-enable"
       - "--interval"
+      - "--cleanup"
       - "30"
       - "--rolling-restart"
     volumes:
