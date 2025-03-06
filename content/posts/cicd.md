@@ -103,9 +103,9 @@ Ok, sweet, that's three requirements done if you consider this is entirely docke
 
 My VPS has a admin system that allows subdomains from it's higher level domain to be configured to point to your VPS's IP address. After setting that up, it's a matter of getting that https request to point to my NextJS server. There are many ways to use this, [traeffic](https://doc.traefik.io/traefik/) was recommended to me as well as being mentioned in the video I linked above. This was a chance for me to go off the beaten path and learn something newer and less [archaic than nginx](https://www.reddit.com/r/programming/comments/18f6su8/nginx_is_probably_fine/)(which I've used for other projects before). With nginx's strange syntax and stranger configuration file setup, you'd really think this program wasn't designed for the modern web.
 
-I mean, who in their right mind would willingly go out of their way to write Nginx configurations that are deployable with Docker when there are better options available?
+I mean, who in their right mind would willingly go out of their way to write nginx configurations that are deployable with Docker when there are better options available?
 
-### Writing nginx configurations that are deployable with docker
+### Writing nginx configurations that are deployable with docker when there are better options available
 
 I found the official docker container for nginx, and set it with my current docker compose system. Given that I had used NGINX before, this was as easy as taking what used to be a split and messy confuguration that lives inside multiple subdirectoriese of `/etc/nginx/` and put it in one nginx.conf file that lived in the same directory as my `compose.yml` file. 
 
