@@ -6,7 +6,7 @@ summary: "How I went about setting up a VPS to run my web app"
 ---
 
 # Introduction
-I'm nearing the deployment of my B2C autonomous squash coaching app, SquashAI. To truly make it business-to-consumer, I needed a way for users to upload their videos so they could be queued for analysis. After watching a lot of Theo's content on YouTube, I was convinced to use Next.js with its modern app router and server-side rendering (SSR). This was a big leap for me, as I had minimal experience with JavaScript—let alone TypeScript and TSX. It turned into quite an adventure, but I'll save the details for another post about my journey into web development.
+I'm nearing the deployment of my B2C autonomous squash coaching app, [SquashAI](/projects/squashai). To truly make it business-to-consumer, I needed a way for users to upload their videos so they could be queued for analysis. After watching a lot of Theo's content on YouTube, I was convinced to use Next.js with its modern app router and server-side rendering (SSR). This was a big leap for me, as I had minimal experience with JavaScript—let alone TypeScript and TSX. It turned into quite an adventure, but I'll save the details for another post about my journey into web development.
 
 When it came to deployment, Vercel was the obvious choice. Surprisingly, it turned out to be one of the easiest "technical" tasks I've ever done. All I had to do was link my GitHub account, select the repository containing my Next.js app, and upload my `.env.local` file. It was that simple.
 
