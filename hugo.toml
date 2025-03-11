@@ -15,7 +15,7 @@ hideHeader = false
 # Intro on main page, content is markdown
 homeIntroTitle = 'Hello!'
 homeIntroContent = """
-My name is Mahdy Karam. I'm a student and varsity squash player at the [University of Waterloo](https://uwaterloo.ca/). I've been programming for 9 years and mostly code in python and C++. I'm currently working on an app that can coach squash matches using computer vision. While you're here, please also check out my [posts](/posts)!
+My name is Mahdy Karam. I'm a student and varsity squash player at the [University of Waterloo](https://uwaterloo.ca/). I've been programming for 9 years and mostly code in python and C++. I'm currently working on an [app that can coach squash matches using computer vision](/projects/squashai). While you're here, please also check out my [posts](/posts)!
 """
 
 # Collection to display on home
