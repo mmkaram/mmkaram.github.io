@@ -41,28 +41,36 @@ Each one of these had to have it's own `Dockerfile` written so that I could buil
 
 Here's what the `Dockerfile` for the NextJS application looks like:
 ```docker
+FROM node:20-alpine AS deps
+WORKDIR /app
+COPY package.json package-lock.json ./prisma/schema.prisma ./
+RUN --mount=type=cache,target=/root/.npm npm ci
+
 FROM node:20-alpine AS builder
 WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN rm -rf .next/
-RUN npm i
-RUN npm run build
 RUN npx prisma generate
+RUN npm run build
 
 FROM node:20-alpine AS runner
 WORKDIR /app
-COPY --from=builder /app/.next ./.next
+ENV NODE_ENV production
+ENV NODE_OPTIONS="--max-old-space-size=8192"
+
+# Copy only necessary files
+COPY --from=builder /app/next.config.ts ./
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/package.json .
-COPY --from=builder /app/package-lock.json .
+COPY --from=builder /app/package.json ./
+COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/prisma ./prisma
-COPY --from=builder /app/app ./app
-COPY --from=builder /app/next.config.ts ./next.config.ts
-ENV NODE_OPTIONS="--max-old-space-size=8192"
+
+# Disable telemetry and start the app
 RUN npx next telemetry disable
 EXPOSE 3000
 CMD ["npm", "start"]
+
 ```
 
 The one for the flask server is similar from a high level perspective. It also contains a build step and a run step, just with a different toolchain to accomadate the different language. Both of these repos then needed a github action yaml file, located in the `./.github/workflows/` directory to install dependencies, run tests, then build those containers and push them to the GitHub container registry. This yaml file can get quite long, so I've linked the workflow for the NextJS project [here](https://gist.github.com/mmkaram/fc77b5c6bf3269b9d20dd9bdd62c8afd).
