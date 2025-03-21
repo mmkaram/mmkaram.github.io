@@ -9,10 +9,18 @@ I created this page as a basic reference of markdown syntax, but keeping a list 
 ## Movies:
 1. Pirates of the Caribbean: At World's End (2007)
 2. The Penguins of Madagascar (2008)
-3. Boy from Heaven (Cairo Conspiracy) (2022)
+3. The Social Network
 4. The Martian (2015)
 5. Dune 2 (2024)
-> HM: Monty Python and the Holy Grail (1975)
+> HM: Monty Python and the Holy Grail (1975), Boy from Heaven (Cairo Conspiracy) (2022)
+
+## TV Shows
+1. Industry (2021)
+2. Ducktales (2017)
+3. The Expanse (2015)
+4. Invincible (2021)
+5. Mr. Robot (2015)
+> HM: Phineas and Ferb
 
 ## Books:
 1. The Martian (Andy Weir)
