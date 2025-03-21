@@ -9,7 +9,7 @@ I created this page as a basic reference of markdown syntax, but keeping a list 
 ## Movies:
 1. Pirates of the Caribbean: At World's End (2007)
 2. The Penguins of Madagascar (2008)
-3. The Social Network
+3. The Social Network (2010)
 4. The Martian (2015)
 5. Dune 2 (2024)
 > HM: Monty Python and the Holy Grail (1975), Boy from Heaven (Cairo Conspiracy) (2022)
