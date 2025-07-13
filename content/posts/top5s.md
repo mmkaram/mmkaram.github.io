@@ -84,7 +84,7 @@ I created this page as a basic reference of markdown syntax, but keeping a list 
 3. Docker
 4. Zoxide
 5. Fish
-> HM: NextJS
+> HM: Svelte
 
 ## Devices
 1. Lenovo Thinkpad
