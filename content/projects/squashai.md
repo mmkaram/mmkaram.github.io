@@ -4,7 +4,7 @@ date: 2024-01-03
 draft: false
 summary: "An autonomous Squash coach written in python, using OpenCV, TF, and Keras"
 ---
-This is a rudimentary explanation of the of the Squash AI program, if you want more details, contact me via [LinkedIn](https://www.linkedin.com/in/mahdy-karam).
+Please keep in mind that this is only a partial explanation of the SquashAI program. Since the project evolves quickly, it’s difficult to keep this page perfectly current.
 #### Introduction
 What is SquashAI? Why did I make it? And why is it important?
 

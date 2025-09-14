@@ -1,7 +1,7 @@
 ---
 title: "Railsy"
 date: 2024-12-11
-draft: false
+draft: true
 summary: "Get disposable emails right from your terminal!"
 ---
 
