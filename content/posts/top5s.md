@@ -1,7 +1,7 @@
 ---
 title: "Top 5s"
 date: 2025-02-23
-draft: false
+draft: true
 summary: "A collection of my top 5 of many mediums"
 ---
 I created this page as a basic reference of markdown syntax, but keeping a list of these things is also cool I guess.
@@ -33,10 +33,10 @@ I created this page as a basic reference of markdown syntax, but keeping a list 
 ## Video Games
 1. Minecraft (2009)
 2. Sea of Thieves (2018)
-3. Assassin's Creed Unity (2014)
+3. Counter Strike GO/2 (2012)
 4. The Secret of Monkey Island (1990)
 5. Control (2019)
-> HM: Sid Meier's Civilization VI (2016)
+> HM: Sid Meier's Civilization VI (2016) + Factorio (2020)
 
 ## Songs
 1. Layla (Cairokee)
@@ -101,11 +101,3 @@ I created this page as a basic reference of markdown syntax, but keeping a list 
 4. San Diego, CA, USA
 5. Cologne, Germany
 > HM: Edinburgh, Scotland
-
-## Planes
-1. F-16
-2. F-15E
-3. F-117
-4. B-2 Spirit
-5. F-35
-> HM: Cessna 172
